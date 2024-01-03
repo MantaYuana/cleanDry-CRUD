@@ -3,8 +3,11 @@
     require_once "template/navbar.php";
 
     switch ($_GET['page']) {
-        case 'value':
-            # code...
+        case 'login':
+            require_once "account-control/login.php";
+            break;
+        case 'register':
+            require_once "account-control/register.php";
             break;
         
         default:
