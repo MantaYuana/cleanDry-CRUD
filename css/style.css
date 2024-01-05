@@ -1,11 +1,11 @@
 @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
 
 :root {
-    --mc-green-accent: #50AF9A;
-    --mc-green-accent-mono: #73BFAE;
-    --mc-green-dark: #5095AF;
-    --mc-white-dull: #F1F1F1;
-    --mc-white-full:#fff;
+  --mc-green-accent: #50af9a;
+  --mc-green-accent-mono: #73bfae;
+  --mc-green-dark: #5095af;
+  --mc-white-dull: #f1f1f1;
+  --mc-white-full: #fff;
 }
 
 .btn-primary {
@@ -23,4 +23,17 @@
   --bs-btn-disabled-color: var(--mc-white-full);
   --bs-btn-disabled-bg: var(--mc-green-accent);
   --bs-btn-disabled-border-color: var(--mc-green-accent);
+}
+
+.hr-text {
+  width: 100% !important;
+  text-align: center !important;
+  border-bottom: 2px solid var(--mc-white-dull) !important;
+  line-height: 0.1em !important;
+  margin: 10px 0 20px !important;
+}
+
+.hr-text span {
+  background: var(--mc-green-dark) !important;
+  padding: 0 10px !important;
 }

@@ -15,6 +15,7 @@ if ($cek != 0) {
 } else {
     $hasil = mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$name', '$user', '$password_hash', '1', '$role');");
 
+    // TODO: implement cross page message transfer (like in task-manager)
     if (!$hasil) {
         echo "Register Failed " .  mysqli_error($conn);
     } else {

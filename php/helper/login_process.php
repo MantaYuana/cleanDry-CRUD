@@ -12,7 +12,8 @@ $cek = password_verify($pass, $data_user['password']);
 if ($cek > 0) {
     $_SESSION['username'] = $user;
     $_SESSION['role'] = $data_user['role'];
-    echo "<script>alert('Login Succesfull');</script>";
+    // TODO: implement cross page message transfer (like in task-manager)
+    echo "<script>alert('Login Succesfull'); window.location.href = '../../page/view/page.php?page=register';</script>";
 } else {
-    echo "<script>alert('Login Failed');</script>";
+    echo "<script>alert('Login Failed'); window.location.href = '../../page/page.php?page=login';</script>";
 }
