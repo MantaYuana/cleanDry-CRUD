@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,9 @@
     <style>
         @import url('../css/style.css');
     </style>
-
+    
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
+    

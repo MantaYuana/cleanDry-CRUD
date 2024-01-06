@@ -13,7 +13,7 @@ if ($cek > 0) {
     $_SESSION['username'] = $user;
     $_SESSION['role'] = $data_user['role'];
     // TODO: implement cross page message transfer (like in task-manager)
-    echo "<script>alert('Login Succesfull'); window.location.href = '../../page/view/page.php?page=register';</script>";
+    echo "<script>alert('Login Succesfull'); window.location.href = '../../page/page.php?page=dashboard';</script>";
 } else {
     echo "<script>alert('Login Failed'); window.location.href = '../../page/page.php?page=login';</script>";
 }
