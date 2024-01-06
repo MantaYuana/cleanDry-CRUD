@@ -18,7 +18,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="register-username" class="form-label text-light">Enter your username <span class="text-danger">*</span></label>
-                        <input type="text" name="register-user" class="form-control p-2" id="register-username" required>
+                        <input type="text" name="register-username" class="form-control p-2" id="register-username" required>
                     </div>
                     <div class="mb-3">
                         <label for="register-password" class="form-label text-light">Enter your password <span class="text-danger">*</span></label>
