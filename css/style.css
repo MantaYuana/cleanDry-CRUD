@@ -1,13 +1,16 @@
 @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
 
 :root {
-  --mc-green-accent: #50af9a;
-  --mc-green-accent-mono: #73bfae;
-  --mc-green-dark: #5095af;
-  --mc-white-dull: #f1f1f1;
-  --mc-white-full: #fff;
+  --mc-green-accent: rgb(80, 175, 154);
+  --mc-green-accent-mono: rgb(115, 191, 174);
+  --mc-green-dark: rgb(80, 149, 175);
+  --mc-green-dark-mono: rgb(115, 170, 191);
+  --mc-white-dull: rgb(241, 241, 241);
+  --mc-white-full: rgb(255, 255, 255);
+  --mc-white-full-opacity75: rgba(255, 255, 255, 0.75);
 }
 
+/* LOGIN PAGE */
 .btn-primary {
   --bs-btn-color: var(--mc-green-accent);
   --bs-btn-bg: var(--mc-green-accent);
@@ -37,3 +40,21 @@
   background: var(--mc-green-dark) !important;
   padding: 0 10px !important;
 }
+/* LOGIN PAGE */
+
+/* NAVBAR */
+.nav-link{
+  color: var(--mc-white-full-opacity75);
+}
+
+.nav-link:hover, .nav-link:focus {
+  color: var(--mc-white-full);
+}
+
+.nav-link.active{
+  color: var(--mc-white-full) !important;
+  background-color: var(--mc-green-dark-mono) !important;
+  border-color: var(--mc-green-dark-mono) !important;
+  border-radius: var(--bs-border-radius-xl) !important;
+}
+/* NAVBAR */
