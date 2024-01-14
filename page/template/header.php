@@ -13,9 +13,8 @@
     <style>
         @import url('../css/style.css');
     </style>
-    
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../node_modules/chart.js/dist/chart.umd.js"></script>
 </head>
 
 <body>
-    

@@ -12,6 +12,8 @@ $cek = password_verify($pass, $data_user['password']);
 if ($cek > 0) {
     $_SESSION['username'] = $user;
     $_SESSION['role'] = $data_user['role'];
+    $outlet = $data_user['id_outlet'];
+    $_SESSION['outlet'] = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM outlet WHERE id='$outlet';"));
     // TODO: implement cross page message transfer (like in task-manager)
     echo "<script>alert('Login Succesfull'); window.location.href = '../../page/page.php?page=dashboard';</script>";
 } else {

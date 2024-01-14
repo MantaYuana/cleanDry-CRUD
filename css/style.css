@@ -43,18 +43,27 @@
 /* LOGIN PAGE */
 
 /* NAVBAR */
-.nav-link{
+.nav-link {
   color: var(--mc-white-full-opacity75);
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover,
+.nav-link:focus {
   color: var(--mc-white-full);
 }
 
-.nav-link.active{
+.nav-link.active {
   color: var(--mc-white-full) !important;
   background-color: var(--mc-green-dark-mono) !important;
   border-color: var(--mc-green-dark-mono) !important;
   border-radius: var(--bs-border-radius-xl) !important;
 }
 /* NAVBAR */
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}

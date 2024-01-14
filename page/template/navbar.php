@@ -1,4 +1,4 @@
-<section id="navbar">
+<section id="navbar" class="sticky-top">
     <nav class="navbar navbar-expand-md" style="background-color: var(--mc-green-dark);">
         <div class="container-fluid">
             <h4 class="text-light fw-bolder me-5">
@@ -9,30 +9,41 @@
                     </svg> CleanDry.
                 </a>
             </h4>
-
+            <!-- NOTE: maybe move navbar menu to side bar and add outlet name to navbar instead -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapsed">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-lg-none" id="navbarCollapsed">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- TODO: add active class into active page -->
-                    <li class="nav-item">
-                        <a class="nav-link active fw-bolder" href="#">Overview</a>
+                    <li class="nav-item me-md-3">
+                        <a class="nav-link active fw-bolder p-md-2 ps-3" href="#">Overview</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bolder" href="../page.php?page=customer">Customer</a>
+                    <li class="nav-item me-md-3">
+                        <a class="nav-link fw-bolder p-md-2 ps-3" href="../page.php?page=customer">Customer</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bolder" href="../page.php?page=transaction">Transaction</a>
+                    <li class="nav-item me-md-3">
+                        <a class="nav-link fw-bolder p-md-2 ps-3" href="../page.php?page=transaction">Transaction</a>
                     </li>
+                    <li class="<?php if ($_SESSION['role'] != "admin") {
+                                    echo "d-none";
+                                } ?> d-md-none nav-item dropdown me-md-3">
+                        <a class="nav-link dropdown-toggle fw-bolder p-md-2 ps-3" href="../page.php?page=outlet" role="button" data-bs-toggle="dropdown">
+                            Admin Menu
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Outlets</a></li>
+                            <li><a class="dropdown-item" href="#">Laundry Packages</a></li>
+                            <li><a class="dropdown-item" href="#">Register User</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
                 <ul class="navbar-nav ms-auto me-5">
                     <li class="nav-item">
-                    </li>
-                    <li class="nav-item d-flex flex-row">
-
                         <div class="dropdown">
                             <!-- QUESTION: is button bg color bad ? -->
+                            <!-- FIXME: remove button background in navbar collapse mode -->
                             <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32px" viewBox="0 0 24 24">
                                     <g fill="none">
