@@ -10,6 +10,7 @@ switch ($_GET['page']) {
         break;
     case 'dashboard':
         require_once "template/navbar.php";
+        require_once "template/sidebar.php";
         require_once "../php/helper/get_statistics.php";
         require_once "view/dashboard.php";
         require_once "../php/helper/graph.php";
