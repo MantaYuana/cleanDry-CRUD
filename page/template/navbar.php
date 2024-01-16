@@ -17,13 +17,19 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!-- TODO: add active class into active page -->
                     <li class="nav-item me-md-3">
-                        <a class="nav-link active fw-bolder p-md-2 ps-3" href="#">Overview</a>
+                        <a class="<?php if ($_GET["page"] == "dashboard") {
+                                        echo "active";
+                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=dashboard">Overview</a>
                     </li>
                     <li class="nav-item me-md-3">
-                        <a class="nav-link fw-bolder p-md-2 ps-3" href="../page.php?page=customer">Customer</a>
+                        <a class="<?php if ($_GET["page"] == "customer") {
+                                        echo "active";
+                                    } ?>nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=customer">Customer</a>
                     </li>
                     <li class="nav-item me-md-3">
-                        <a class="nav-link fw-bolder p-md-2 ps-3" href="../page.php?page=transaction">Transaction</a>
+                        <a class="<?php if ($_GET["page"] == "transaction") {
+                                        echo "active";
+                                    } ?>nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=transaction">Transaction</a>
                     </li>
                     <li class="<?php if ($_SESSION['role'] != "admin") {
                                     echo "d-none";

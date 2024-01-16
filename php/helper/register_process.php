@@ -17,10 +17,9 @@ if ($cek != 0) {
 
     // TODO: implement cross page message transfer (like in task-manager)
     if (!$hasil) {
-        echo "Register Failed " .  mysqli_error($conn);
+        echo "<script>alert('Register Failed: " . mysqli_error($conn) . "'); window.location.href = '../../page/page.php?page=register';</script>";
     } else {
-        // header('Location: ../login.php');
-        echo "<script>alert('Register success !'); </script>";
+        echo "<script>alert('Register success !'); window.location.href = '../../page/page.php?page=dashboard';</script>";
         exit;
     }
 }
