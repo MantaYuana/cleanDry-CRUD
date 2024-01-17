@@ -4,7 +4,11 @@
   --mc-green-accent: rgb(80, 175, 154);
   --mc-green-accent-mono: rgb(115, 191, 174);
   --mc-green-dark: rgb(80, 149, 175);
-  --mc-green-dark-mono: rgb(115, 170, 191);
+  --mc-green-dark-mono: #73aabf;
+  --mc-red-accent: rgb(175, 80, 101); /* complementary to green accent */
+  --mc-red-accent-mono: rgb(191, 115, 132);
+  --mc-blue-dark: #5065AF; /* analogous to green-dark */
+  --mc-blue-dark-mono: #7384BF; 
   --mc-white-dull: rgb(241, 241, 241);
   --mc-white-full: rgb(255, 255, 255);
   --mc-white-full-opacity75: rgba(255, 255, 255, 0.75);

@@ -24,7 +24,7 @@
     </symbol>
 </svg>
 
-<div id="sidebar" style="background-color: var(--mc-green-accent);" class="vh-100 position-fixed d-md-flex d-none flex-column flex-shrink-0 <?php if ($_SESSION['role'] != "admin") {
+<div id="sidebar" style="background-color: var(--mc-green-dark-mono);" class="vh-100 position-fixed d-md-flex d-none flex-column flex-shrink-0 <?php if ($_SESSION['role'] != "admin") {
                                                                                                             echo "d-none";
                                                                                                         } ?>" style="width: 3.5rem;">
     <!-- TODO: add offcanvas sidebar -->
@@ -37,7 +37,7 @@
 
     <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
         <li class="nav-item">
-            <a href="#" class="nav-link py-3 border-bottom rounded-0" title="Outlets" data-bs-toggle="tooltip" data-bs-placement="right">
+            <a href="../page/page.php?page=outlets" class="nav-link py-3 border-bottom rounded-0" title="Outlets" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24">
                     <use xlink:href="#outlets" />
                 </svg>

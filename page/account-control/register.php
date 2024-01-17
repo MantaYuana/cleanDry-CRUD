@@ -1,3 +1,4 @@
+<!-- TODO: add bootstrap custom form validation -->
 <?php
 $query = mysqli_query($conn, "SELECT id, nama FROM outlet;");
 $res = mysqli_fetch_all($query);
@@ -10,7 +11,7 @@ $res = mysqli_fetch_all($query);
         <h2 class="fw-medium" style="color: var(--mc-green-dark);">Register <span class="fw-bolder" style="color: var(--mc-green-dark-mono);">User</span></h2>
         <br>
 
-        <div class="border rounded-4 bg-light col-8">
+        <div class="border rounded-4 bg-white col-8">
             <div class="border pt-3 pb-1 d-flex justify-content-center">
                 <h5>Add User</h5>
             </div>

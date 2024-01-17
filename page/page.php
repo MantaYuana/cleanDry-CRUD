@@ -18,8 +18,20 @@ switch ($_GET['page']) {
         require_once "view/dashboard.php";
         require_once "../php/helper/graph.php";
         break;
-    case 'test':
-        require_once "account-control/registerTest.php";
+    case 'outlets':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "view/outlet.php";
+        break;
+    case 'register-outlet':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "admin/registerOutlet.php";
+        break;
+    case 'edit-outlet':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "admin/registerOutlet.php";
         break;
 
     default:
