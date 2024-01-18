@@ -47,7 +47,7 @@ $res = mysqli_fetch_all($query);
                         <td>$value[2]</td>
                         <td>$value[3]</td>
                         <td class='text-center'>
-                            <a href='../page/page.php?page=edit-outlet'>
+                            <a href='../page/page.php?page=edit-outlet&idOutlet=$value[0]'>
                                 <svg class='bi pe-none' width='24' height='24'>
                                     <use xlink:href='#edit' />
                                 </svg>

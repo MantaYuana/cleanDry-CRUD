@@ -10,7 +10,7 @@
                 <h5>Add Outlet</h5>
             </div>
             <div class="border rounded-4 p-5">
-                <form action="../php/helper/registerOutlet_process.php" method="post">
+                <form action="../php/helper/outlet_process.php" method="post">
                     <div class="mb-3 col-8">
                         <label for="register-name" class="form-label">Name <span class="text-danger">*</span> </label>
                         <input type="text" name="register-name" class="form-control p-2" id="register-name" required>
@@ -26,6 +26,7 @@
                     <button type="submit" class="btn btn-primary text-light p-2">Register</button>
                     <a class="btn btn-outline-secondary p-2 ps-3 pe-3" href="../page/page.php?page=outlets">Back</a>
 
+                    <input type="hidden" name="process" value="register">
                 </form>
             </div>
         </div>

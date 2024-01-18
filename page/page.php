@@ -31,7 +31,7 @@ switch ($_GET['page']) {
     case 'edit-outlet':
         require_once "template/navbar.php";
         require_once "template/sidebar.php";
-        require_once "admin/registerOutlet.php";
+        require_once "admin/editOutlet.php";
         break;
 
     default:
