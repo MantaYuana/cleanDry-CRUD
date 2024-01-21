@@ -66,7 +66,7 @@ $res = mysqli_fetch_all($query);
                             </a>";
                         $available = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(id)
                         FROM outlet WHERE EXISTS
-                        (SELECT id FROM paket WHERE id_outlet=$value[0]) AND 
+                        (SELECT id FROM paket WHERE id_outlet=$value[0]) OR 
                         EXISTS (SELECT id FROM user WHERE id_outlet=$value[0]);
                         "));
                         if ($available[0] == 0) {

@@ -2,7 +2,8 @@
 require_once "../php/connect.php"; // for depolyment
 // require_once "../connect.php"; // for testing
 
-$query = mysqli_query($conn, "SELECT dibayar, pajak FROM transaksi WHERE YEAR(tgl_bayar)=date('Y');");
+$id_outlet = $_SESSION['outlet']['id'];
+$query = mysqli_query($conn, "SELECT dibayar, pajak FROM transaksi WHERE YEAR(tgl_bayar)=date('Y') AND id_outlet = $id_outlet;");
 $result = mysqli_fetch_all($query);
 
 $data = ["paid" => 0, "unpaid" => 0, "tax" => 0]; // paid count, unpaid count, tax count

@@ -11,7 +11,7 @@ $query_username = mysqli_query($conn, "SELECT username FROM user WHERE username=
 $cek = mysqli_num_rows($query_username);
 
 if ($cek != 0) {
-    echo "<script>alert('Username already exists, please enter another username !'); </script>";
+    echo "<script>alert('Username already exists, please enter another username !'); window.location.href = '../../page/page.php?page=register'</script>";
 } else {
     $hasil = mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$name', '$user', '$password_hash', '1', '$role');");
 
