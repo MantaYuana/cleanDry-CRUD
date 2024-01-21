@@ -46,6 +46,12 @@
 
                 </ul>
                 <ul class="navbar-nav ms-auto me-5">
+                    <?php
+                    if ($_SESSION["role"] == "admin") {
+                        $outlet = $_SESSION['outlet']['nama'];
+                        echo "<span class='navbar-text text-light fw-bolder p-md-2 ps-3 me-3'>Outlet: $outlet</span>";
+                    }
+                    ?>
                     <li class="nav-item">
                         <div class="dropdown">
                             <!-- QUESTION: is button bg color bad ? -->

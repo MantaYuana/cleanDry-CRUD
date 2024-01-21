@@ -32,7 +32,7 @@ $res = mysqli_fetch_all($query);
         <br>
 
         <div class="table-responsive bg-white p-5 border rounded-4">
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover table-bordered align-middle">
                 <thead>
                     <tr class="text-center">
                         <th scope="col">ID</th>
@@ -47,7 +47,15 @@ $res = mysqli_fetch_all($query);
                     foreach ($res as $key => $value) {
                         echo "<tr>
                         <th class='text-center' scope='row'>$value[0]</th>
-                        <td>$value[1]</td>
+                        <td>$value[1]";
+                        if ($_SESSION["role"] == "admin") {
+                            echo "<form action='../php/helper/outlet_process.php' method='POST'>
+                                    <input type='hidden' name='process' value='outletSelect'>
+                                    <input type='hidden' name='id' value='$value[0]'>
+                                    <button type='submit' class='btn btn-primary text-light'>Select Outlet</button>
+                                </form>";
+                        }
+                        echo "</td>
                         <td>$value[2]</td>
                         <td>$value[3]</td>
                         <td class='text-center'>
@@ -86,19 +94,16 @@ $res = mysqli_fetch_all($query);
                                     <input type='hidden' name='process' value='destroy'>
                                     <input type='hidden' name='id' value='$value[0]'>
                                     <button type='submit' class='btn btn-danger'>Delete</button>
-                                </form>                            
+                                </form>                                                                              
                             </div>
                         </div>
                     </div>
-                </div>
-                    ";
+                </div>";
                         }
                     }
                     ?>
-
                 </tbody>
             </table>
-
         </div>
     </div>
 </section>
