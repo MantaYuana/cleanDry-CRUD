@@ -9,7 +9,7 @@ switch ($_GET['page']) {
     case 'register':
         require_once "template/navbar.php";
         require_once "template/sidebar.php";
-        require_once "account-control/register.php";
+        require_once "account-control/registerUser.php";
         break;
     case 'dashboard':
         require_once "template/navbar.php";
@@ -21,18 +21,34 @@ switch ($_GET['page']) {
     case 'outlets':
         require_once "template/navbar.php";
         require_once "template/sidebar.php";
-        require_once "view/outlet.php";
+        require_once "outlet-control/outlet.php";
         break;
     case 'register-outlet':
         require_once "template/navbar.php";
         require_once "template/sidebar.php";
-        require_once "admin/registerOutlet.php";
+        require_once "outlet-control/registerOutlet.php";
         break;
     case 'edit-outlet':
         require_once "template/navbar.php";
         require_once "template/sidebar.php";
-        require_once "admin/editOutlet.php";
+        require_once "outlet-control/editOutlet.php";
         break;
+    case 'packages':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "package-control/package.php";
+        break;
+    case 'register-package':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "package-control/registerPackage.php";
+        break;
+    case 'edit-package':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "package-control/editPackage.php";
+        break;
+
 
     default:
         echo "error page";

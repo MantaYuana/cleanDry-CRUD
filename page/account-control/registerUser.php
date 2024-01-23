@@ -7,7 +7,7 @@ $res = mysqli_fetch_all($query);
 <section id="register" class="bg-body-secondary vh-100">
     <div class="container">
         <br>
-        <h6 class="mt-3">Outlet <span class="fw-bolder text-decoration-underline"><?= $_SESSION['outlet']['nama'] ?>,</span></h6>
+        <h6 class="mt-3">Admin Menu - <span class="fw-bolder text-decoration-underline"><?= $_SESSION['outlet']['nama'] ?>,</span></h6>
         <h2 class="fw-medium" style="color: var(--mc-green-dark);">Register <span class="fw-bolder" style="color: var(--mc-green-dark-mono);">User</span></h2>
         <br>
 

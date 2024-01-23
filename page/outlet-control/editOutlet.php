@@ -27,11 +27,11 @@ $res = mysqli_fetch_assoc($query);
                         <input type="text" name="register-name" class="form-control p-2" id="register-name" value="<?= $res["nama"] ?>" required>
                     </div>
                     <div class="mb-3 col-8">
-                        <label for="register-telp" class="form-label">No. Telp <span class="text-danger">*</span></label>
+                        <label for="register-telp" class="form-label">Phone Number <span class="text-danger">*</span></label>
                         <input type="text" name="register-telp" class="form-control p-2" id="register-telp" value="<?= $res["telp"] ?>" required>
                     </div>
                     <div class="mb-3 col-8">
-                        <label for="register-alamat" class="form-label">Alamat <span class="text-danger">*</span></label>
+                        <label for="register-alamat" class="form-label">Address <span class="text-danger">*</span></label>
                         <textarea name="register-alamat" class="form-control p-2" id="register-alamat" row="3" required><?= $res["alamat"] ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary text-light p-2">Submit</button>

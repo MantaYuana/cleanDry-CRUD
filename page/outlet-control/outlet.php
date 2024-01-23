@@ -1,7 +1,6 @@
 <?php
 $query = mysqli_query($conn, "SELECT * FROM outlet;");
 $res = mysqli_fetch_all($query);
-
 ?>
 
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -36,9 +35,9 @@ $res = mysqli_fetch_all($query);
                 <thead>
                     <tr class="text-center">
                         <th scope="col">ID</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Alamat</th>
-                        <th scope="col">Telp</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Phone Number</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
