@@ -6,10 +6,20 @@ switch ($_GET['page']) {
     case 'login':
         require_once "account-control/login.php";
         break;
-    case 'register':
+    case 'users':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "account-control/users.php";
+        break;
+    case 'register-user':
         require_once "template/navbar.php";
         require_once "template/sidebar.php";
         require_once "account-control/registerUser.php";
+        break;
+    case 'edit-user':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "account-control/editUser.php";
         break;
     case 'dashboard':
         require_once "template/navbar.php";

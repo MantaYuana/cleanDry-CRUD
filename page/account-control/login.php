@@ -19,7 +19,7 @@
                 <br>
                 <h6 class="hr-text"><span class="text-light">OR</span></h6>
 
-                <form action="../php/helper/login_process.php" method="post">
+                <form action="../php/helper/account_process.php" method="post">
                     <div class="mb-3">
                         <label for="login-username" class="form-label text-light">Username</label>
                         <input type="text" name="login-user" class="form-control p-2" id="login-username" required>
@@ -30,6 +30,7 @@
                         <div id="forgotPassword" class="form-text"><a href="page.php?page=forget-password" class="link-light link-offset-2 link-underline-opacity-50 link-underline-opacity-100-hover">Forgot you password ?</a></div>
                     </div>
                     <div class="d-grid gap-2">
+                        <input type='hidden' name='process' value='login'>
                         <button type="submit" class="btn btn-primary text-light p-2">Login</button>
                     </div>
                 </form>

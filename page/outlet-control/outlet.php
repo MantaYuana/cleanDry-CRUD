@@ -1,4 +1,9 @@
 <?php
+if ($_SESSION['role'] != "admin") {
+    echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../../page/page.php?page=dashboard';</script>";
+    exit();
+}
+
 $query = mysqli_query($conn, "SELECT * FROM outlet;");
 $res = mysqli_fetch_all($query);
 ?>

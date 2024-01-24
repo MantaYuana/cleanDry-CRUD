@@ -66,7 +66,12 @@
                                 <?= $_SESSION['username'] ?>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="../php/helper/logout.php">Logout</a></li>
+                                <li>
+                                    <form action='../php/helper/account_process.php' method='POST'>
+                                        <input type='hidden' name='process' value='logout'>
+                                        <button type='submit' class='btn dropdown-item'>Logout</button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </li>

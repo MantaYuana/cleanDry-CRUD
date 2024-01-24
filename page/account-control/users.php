@@ -5,7 +5,7 @@ if ($_SESSION['role'] != "admin") {
 }
 
 $outlet = $_SESSION['outlet']['id'];
-$query = mysqli_query($conn, "SELECT * FROM paket WHERE id_outlet=$outlet;");
+$query = mysqli_query($conn, "SELECT * FROM user WHERE id_outlet=$outlet;");
 $res = mysqli_fetch_all($query);
 ?>
 
@@ -27,10 +27,10 @@ $res = mysqli_fetch_all($query);
         <div class="page-heading d-flex justify-content-between align-items-center">
             <div>
                 <h6 class="mt-3">Admin Menu - <span class="fw-bolder text-decoration-underline"><?= $_SESSION['outlet']['nama'] ?>,</span></h6>
-                <h2 class="fw-medium" style="color: var(--mc-green-dark);">Configure <span class="fw-bolder" style="color: var(--mc-green-dark-mono);">Packages</span></h2>
+                <h2 class="fw-medium" style="color: var(--mc-green-dark);">Configure <span class="fw-bolder" style="color: var(--mc-green-dark-mono);">User</span></h2>
             </div>
             <div>
-                <button type="button" class="btn btn-primary p-2 ps-5 pe-5"><a class="link-underline link-light link-underline-opacity-0" href="../page/page.php?page=register-package">Add Package</a></button>
+                <button type="button" class="btn btn-primary p-2 ps-5 pe-5"><a class="link-underline link-light link-underline-opacity-0" href="../page/page.php?page=register-user">Add User</a></button>
             </div>
         </div>
         <br>
@@ -39,47 +39,23 @@ $res = mysqli_fetch_all($query);
             <table class="table table-hover table-bordered align-middle">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col">No.</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Role</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
                     <?php
-                    $numb = 0;
                     foreach ($res as $key => $value) {
-                        $numb++;
-                        switch ($value[2]) {
-                            case 'kiloan':
-                                $value[2] = "by weight";
-                                break;
-                            case 'selimut':
-                                $value[2] = "Blanket";
-                                break;
-                            case 'bed_cover':
-                                $value[2] = "Bed Cover";
-                                break;
-                            case 'kaos':
-                                $value[2] = "Shirt";
-                                break;
-                            case 'lain':
-                                $value[2] = "Other";
-                                break;
-
-                            default:
-                                $value[2] = "error type";
-                                break;
-                        }
-                    
                         echo "<tr>
-                            <th class='text-center' scope='row'>$numb</th>
-                            <td>$value[3]</td>
+                            <th class='text-center' scope='row'>$value[0]</th>
+                            <td>$value[1]</td>
                             <td>$value[2]</td>
-                            <td>$value[4]</td>
+                            <td>$value[5]</td>
                             <td class='text-center'>
-                                <a type='button' class='btn btn-warning me-3' href='../page/page.php?page=edit-package&idPackage=$value[0]'>
+                                <a type='button' class='btn btn-warning me-3' href='../page/page.php?page=edit-user&idUser=$value[0]'>
                                     <svg class='bi pe-none' width='24' height='24'>
                                         <use xlink:href='#edit' />
                                     </svg>
@@ -98,12 +74,12 @@ $res = mysqli_fetch_all($query);
                                         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
                                     </div>
                                     <div class='modal-body'>
-                                        <h6>Are you sure you want to delete <span class='fw-bolder'>$value[3]</span> ?</h6>
+                                        <h6>Are you sure you want to delete <span class='fw-bolder'>$value[1]</span> ?</h6>
                                         <h6>This change is irreversible</h6>
                                     </div>
                                     <div class='modal-footer'>
                                         <button type='button' class='btn btn-outline-secondary' data-bs-dismiss='modal'>Cancel</button>
-                                        <form action='../php/helper/package_process.php' method='POST'>
+                                        <form action='../php/helper/account_process.php' method='POST'>
                                             <input type='hidden' name='process' value='destroy'>
                                             <input type='hidden' name='id' value='$value[0]'>
                                             <button type='submit' class='btn btn-danger'>Delete</button>
