@@ -22,14 +22,14 @@
                                     } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=dashboard">Overview</a>
                     </li>
                     <li class="nav-item me-md-3">
-                        <a class="<?php if ($_GET["page"] == "customer") {
+                        <a class="<?php if ($_GET["page"] == "customers") {
                                         echo "active";
-                                    } ?>nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=customer">Customer</a>
+                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=customers">Customer</a>
                     </li>
                     <li class="nav-item me-md-3">
                         <a class="<?php if ($_GET["page"] == "transaction") {
                                         echo "active";
-                                    } ?>nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=transaction">Transaction</a>
+                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=transaction">Transaction</a>
                     </li>
                     <li class="<?php if ($_SESSION['role'] != "admin") {
                                     echo "d-none";
@@ -38,9 +38,9 @@
                             Admin Menu
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Outlets</a></li>
-                            <li><a class="dropdown-item" href="#">Laundry Packages</a></li>
-                            <li><a class="dropdown-item" href="#">Register User</a></li>
+                            <li><a class="dropdown-item" href="../page/page.php?page=outlets">Outlets</a></li>
+                            <li><a class="dropdown-item" href="../page/page.php?page=packages">Packages</a></li>
+                            <li><a class="dropdown-item" href="../page/page.php?page=users">Users</a></li>
                         </ul>
                     </li>
 
@@ -50,7 +50,7 @@
                     if ($_SESSION["role"] == "admin") {
                         $outlet = $_SESSION['outlet']['nama'];
                         echo "<span class='navbar-text text-light fw-bolder p-md-2 ps-3 me-3'>Outlet: $outlet</span>";
-                    }
+                    }  
                     ?>
                     <li class="nav-item">
                         <div class="dropdown">

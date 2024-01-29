@@ -58,7 +58,21 @@ switch ($_GET['page']) {
         require_once "template/sidebar.php";
         require_once "package-control/editPackage.php";
         break;
-
+    case 'members':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "member-control/members.php";
+        break;
+    case 'register-member':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "member-control/registerMember.php";
+        break;
+    case 'edit-member':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "member-control/editMember.php";
+        break;
 
     default:
         echo "error page";

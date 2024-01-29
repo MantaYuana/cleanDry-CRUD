@@ -15,18 +15,18 @@
         </g>
     </symbol>
 
-    <symbol id="user" viewBox="0 0 24 24">
-        <path fill="white" d="M9 13.75c-2.34 0-7 1.17-7 3.5V19h14v-1.75c0-2.33-4.66-3.5-7-3.5M4.34 17c.84-.58 2.87-1.25 4.66-1.25s3.82.67 4.66 1.25zM9 12c1.93 0 3.5-1.57 3.5-3.5S10.93 5 9 5S5.5 6.57 5.5 8.5S7.07 12 9 12m0-5c.83 0 1.5.67 1.5 1.5S9.83 10 9 10s-1.5-.67-1.5-1.5S8.17 7 9 7m7.04 6.81c1.16.84 1.96 1.96 1.96 3.44V19h4v-1.75c0-2.02-3.5-3.17-5.96-3.44M15 12c1.93 0 3.5-1.57 3.5-3.5S16.93 5 15 5c-.54 0-1.04.13-1.5.35c.63.89 1 1.98 1 3.15s-.37 2.26-1 3.15c.46.22.96.35 1.5.35" />
+    <symbol id="users" viewBox="0 0 24 24">
+        <path fill="none" stroke="white" stroke-width="2" d="M8 11A5 5 0 1 0 8 1a5 5 0 0 0 0 10Zm5.023 2.023C11.772 11.76 10.013 11 8 11c-4 0-7 3-7 7v5h7m2-3.5a2.5 2.5 0 1 0 5.002-.002A2.5 2.5 0 0 0 10 19.5zM23 15l-3-3l-6 6m3.5-3.5l3 3z" />
     </symbol>
 
-    <symbol id="registerUser" viewBox="0 0 24 24">
-        <path fill="white" d="M15 4a4 4 0 0 0-4 4a4 4 0 0 0 4 4a4 4 0 0 0 4-4a4 4 0 0 0-4-4m0 1.9a2.1 2.1 0 1 1 0 4.2A2.1 2.1 0 0 1 12.9 8A2.1 2.1 0 0 1 15 5.9M4 7v3H1v2h3v3h2v-3h3v-2H6V7zm11 6c-2.67 0-8 1.33-8 4v3h16v-3c0-2.67-5.33-4-8-4m0 1.9c2.97 0 6.1 1.46 6.1 2.1v1.1H8.9V17c0-.64 3.1-2.1 6.1-2.1" />
+    <symbol id="members" viewBox="0 0 24 24">
+        <path fill="white" d="M7.5 9a3 3 0 1 0 0-6a3 3 0 0 0 0 6m0-1.5a1.5 1.5 0 1 1 0-3a1.5 1.5 0 0 1 0 3M3 11.75c0-.966.784-1.75 1.75-1.75h5.5c.966 0 1.75.784 1.75 1.75v4.75a4.5 4.5 0 1 1-9 0zm1.75-.25a.25.25 0 0 0-.25.25v4.75a3 3 0 1 0 6 0v-4.75a.25.25 0 0 0-.25-.25zm5.777-2.886a3 3 0 1 0 0-5.229c.327.378.584.818.752 1.3a1.5 1.5 0 1 1 0 2.631a3.995 3.995 0 0 1-.752 1.298m.333 12.24A4.5 4.5 0 0 0 16.5 16.5v-4.75A1.75 1.75 0 0 0 14.75 10h-2.38c.343.415.566.933.618 1.5h1.76a.25.25 0 0 1 .25.25v4.75a3 3 0 0 1-2.887 2.998c-.339.52-.762.978-1.252 1.356m4.167-12.24a3 3 0 1 0 0-5.229c.327.378.584.818.752 1.3a1.5 1.5 0 1 1 0 2.631a3.995 3.995 0 0 1-.752 1.298m.333 12.24A4.5 4.5 0 0 0 21 16.5v-4.75A1.75 1.75 0 0 0 19.25 10h-2.38c.343.415.567.933.618 1.5h1.76a.25.25 0 0 1 .25.25v4.75a3 3 0 0 1-2.887 2.998c-.339.52-.762.978-1.252 1.356" />
     </symbol>
 </svg>
 
 <div id="sidebar" style="background-color: var(--mc-green-dark-mono);" class="vh-100 position-fixed d-md-flex d-none flex-column flex-shrink-0 <?php if ($_SESSION['role'] != "admin") {
-                                                                                                            echo "d-none";
-                                                                                                        } ?>" style="width: 3.5rem;">
+                                                                                                                                                    echo "d-none";
+                                                                                                                                                } ?>" style="width: 3.5rem;">
     <!-- TODO: add offcanvas sidebar -->
     <!-- TODO: add active page -->
     <a href="#" class="d-block p-3 link-body-emphasis text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right">
@@ -51,16 +51,16 @@
             </a>
         </li>
         <li>
-            <a href="../page/page.php?page=users" class="nav-link py-3 border-bottom rounded-0" title="User" data-bs-toggle="tooltip" data-bs-placement="right">
+            <a href="../page/page.php?page=users" class="nav-link py-3 border-bottom rounded-0" title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24">
-                    <use xlink:href="#user" />
+                    <use xlink:href="#users" />
                 </svg>
             </a>
         </li>
         <li>
-            <a href="../page/page.php?page=register" class="nav-link py-3 border-bottom rounded-0" title="Register User" data-bs-toggle="tooltip" data-bs-placement="right">
+            <a href="../page/page.php?page=members" class="nav-link py-3 border-bottom rounded-0" title="Members" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24">
-                    <use xlink:href="#registerUser" />
+                    <use xlink:href="#members" />
                 </svg>
             </a>
         </li>
