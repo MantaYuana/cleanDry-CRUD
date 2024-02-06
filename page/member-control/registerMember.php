@@ -8,6 +8,7 @@ if ($_SESSION['role'] != "admin") {
 <section id="register" class="bg-body-secondary vh-100">
     <div class="container">
         <br>
+        <!-- FIXME: it will say admin menu if kasir logged in -->
         <h6 class="mt-3">Admin <span class="fw-bolder text-decoration-underline">Menu</span></h6>
         <h2 class="fw-medium" style="color: var(--mc-green-dark);">Register <span class="fw-bolder" style="color: var(--mc-green-dark-mono);">Member</span></h2>
         <br>

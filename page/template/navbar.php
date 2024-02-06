@@ -22,14 +22,14 @@
                                     } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=dashboard">Overview</a>
                     </li>
                     <li class="nav-item me-md-3">
-                        <a class="<?php if ($_GET["page"] == "customers") {
+                        <a class="<?php if ($_GET["page"] == "register-member") {
                                         echo "active";
-                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=customers">Customer</a>
+                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=register-member">Customer</a>
                     </li>
                     <li class="nav-item me-md-3">
-                        <a class="<?php if ($_GET["page"] == "transaction") {
+                        <a class="<?php if ($_GET["page"] == "transactions") {
                                         echo "active";
-                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=transaction">Transaction</a>
+                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=transactions">Transaction</a>
                     </li>
                     <li class="<?php if ($_SESSION['role'] != "admin") {
                                     echo "d-none";

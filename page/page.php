@@ -73,7 +73,21 @@ switch ($_GET['page']) {
         require_once "template/sidebar.php";
         require_once "member-control/editMember.php";
         break;
-
+    case 'transactions':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "transaction-control/transactions.php";
+        break;
+    case 'register-transaction':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "transaction-control/registerTransaction.php";
+        break;
+    case 'edit-transaction':
+        require_once "template/navbar.php";
+        require_once "template/sidebar.php";
+        require_once "transaction-control/editTransaction.php";
+        break;
     default:
         echo "error page";
         break;

@@ -2,8 +2,12 @@
 
     <div id="dashboard-chart" class="container">
         <br>
-        <h5 class="mt-3">Outlet <span class="fw-bolder text-decoration-underline"><?= $_SESSION['outlet']['nama'] ?>,</span></h5>
-        <h6>Welcome <span class="fw-bolder"><?= ucwords($_SESSION['role']) ?> <?= $_SESSION['username'] ?></span></h6>
+        <div class="page-heading d-flex justify-content-between align-items-center">
+            <div>
+                <h5 class="mt-3">Outlet <span class="fw-bolder text-decoration-underline"><?= $_SESSION['outlet']['nama'] ?>,</span></h5>
+                <h6>Welcome <span class="fw-bolder"><?= ucwords($_SESSION['role']) ?> <?= $_SESSION['username'] ?></span></h6>
+            </div>
+        </div>
         <br>
 
         <div class="d-flex flex-row justify-content-between mb-3 flex-fill">

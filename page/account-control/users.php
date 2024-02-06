@@ -49,6 +49,7 @@ $res = mysqli_fetch_all($query);
                 <tbody class="table-group-divider">
                     <?php
                     foreach ($res as $key => $value) {
+                        // FIXME: only allow delete if not data is associated
                         echo "<tr>
                             <th class='text-center' scope='row'>$value[0]</th>
                             <td>$value[1]</td>
@@ -59,7 +60,8 @@ $res = mysqli_fetch_all($query);
                                     <svg class='bi pe-none' width='24' height='24'>
                                         <use xlink:href='#edit' />
                                     </svg>
-                                </a><a type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalDelete$value[0]'>
+                                </a>
+                                <a type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalDelete$value[0]'>
                                     <svg class='bi pe-none' width='24' height='24'>
                                         <use xlink:href='#delete' />
                                     </svg>
