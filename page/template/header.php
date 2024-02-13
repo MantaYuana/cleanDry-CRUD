@@ -15,6 +15,8 @@
     </style>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../node_modules/chart.js/dist/chart.umd.js"></script>
+    <script src="../node_modules/autonumeric/dist/autoNumeric.min.js" type="text/javascript"></script>
+    <script src="../node_modules/flatpickr/dist/flatpickr.min.js" type="text/javascript"></script>
 </head>
 
 <body>

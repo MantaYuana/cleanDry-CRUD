@@ -6,7 +6,28 @@ foreach ($cart as $order => $value) {
 
     $query = mysqli_query($conn, "SELECT jenis, nama_paket, harga FROM paket WHERE id=$value->packageID;");
     $package = mysqli_fetch_assoc($query);
+    // TODO: make price and total formatted in currency rupiah
+    switch ($package["jenis"]) {
+        case 'kiloan':
+            $package["jenis"] = "by weight";
+            break;
+        case 'selimut':
+            $package["jenis"] = "Blanket";
+            break;
+        case 'bed_cover':
+            $package["jenis"] = "Bed Cover";
+            break;
+        case 'kaos':
+            $package["jenis"] = "Shirt";
+            break;
+        case 'lain':
+            $package["jenis"] = "Other";
+            break;
 
+        default:
+            $package["jenis"] = "error type";
+            break;
+    }
     echo "<tr id='order-$value->packageID'>
     <th scope='row'>$value->packageID</th>
     <td class='text-start'>" . $package["nama_paket"] . "</td>
@@ -14,6 +35,7 @@ foreach ($cart as $order => $value) {
     <td>" . $package["harga"] . "</td>
     <td>" . $value->quantity . "</td>
     <td>" . $package["harga"] * $value->quantity . "</td>
+    <td width='400ch'>" . $value->note . "</td>
     <td><a type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalDelete$value->packageID'>
             <svg class='bi pe-none' width='24' height='24'>
                 <use xlink:href='#delete' />

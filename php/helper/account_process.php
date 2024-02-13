@@ -59,6 +59,7 @@ if ($process == "register") {
     $cek = password_verify($pass, $data_user['password']);
 
     if ($cek > 0) {
+        $_SESSION['id_user'] = $data_user['id'];
         $_SESSION['username'] = $user;
         $_SESSION['role'] = $data_user['role'];
         $outlet = $data_user['id_outlet'];

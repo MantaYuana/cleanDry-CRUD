@@ -12,7 +12,7 @@ if ($idCustomer > 0) {
 }
 
 if ($idPackage > 0) {
-    $query = mysqli_query($conn, "SELECT nama_paket, harga FROM paket WHERE id=$idPackage;");
+    $query = mysqli_query($conn, "SELECT nama_paket, harga, jenis FROM paket WHERE id=$idPackage;");
     $resPackage = mysqli_fetch_assoc($query);
 }
 
