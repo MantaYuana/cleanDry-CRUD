@@ -4,11 +4,14 @@
   "description": "A CRUD project for Point-of-Sale system",
   "main": "index.js",
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "autonumeric": "^4.10.5",
     "autoprefixer": "^10.4.16",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.1",
+    "datatables.net-bs5": "^1.13.10",
     "flatpickr": "^4.6.13",
+    "jquery": "^3.7.1",
     "numeral": "^2.0.6",
     "postcss": "^8.4.32",
     "postcss-cli": "^11.0.0"
