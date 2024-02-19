@@ -32,7 +32,8 @@ if ($process == "register") {
         $id_transaksi = $transaksi['id'];
 
         foreach ($cart as $key => $value) {
-            $res = mysqli_query($conn, "INSERT INTO detail_transaksi VALUES (NULL, $id_transaksi, $value->packageID, $value->quantity, '$value->note');");
+            $total_harga = $value->quantity * $value->price;
+            $res = mysqli_query($conn, "INSERT INTO detail_transaksi VALUES (NULL, $id_transaksi, $value->packageID, $value->quantity, '$value->note', $value->price, $total_harga);");
         }
         echo "<script>alert('Transaction success !'); window.location.href = '../../page/page.php?page=transactions';</script>";
         exit;
