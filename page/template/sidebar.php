@@ -24,9 +24,7 @@
     </symbol>
 </svg>
 
-<div id="sidebar" style="background-color: var(--mc-green-dark-mono);" class="vh-100 position-fixed d-md-flex d-none flex-column flex-shrink-0 <?php if ($_SESSION['role'] != "admin") {
-                                                                                                                                                    echo "d-none";
-                                                                                                                                                } ?>" style="width: 3.5rem;">
+<div id="sidebar" style="background-color: var(--mc-green-dark-mono);" class="vh-100 position-fixed <?= ($_SESSION['role'] != "admin") ? "d-none" : "d-md-flex" ?> d-none flex-column flex-shrink-0" style="width: 3.5rem;">
     <!-- TODO: add offcanvas sidebar -->
     <!-- TODO: add active page -->
     <a href="#" class="d-block p-3 link-body-emphasis text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right">
