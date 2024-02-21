@@ -174,29 +174,33 @@ function calculateCart() {
   let discount = 0;
   let tax = 0;
   let total = 0;
+  let paymentChange = 0;
 
   cart.forEach((element) => {
     subtotal = subtotal + element["price"] * element["quantity"];
   });
 
-  tax = (subtotal - discount) * 0.0075;
-  total = subtotal - discount + tax;
+  tax =
+    (subtotal - discount + Number(additionalCostInput.getNumericString())) *
+    0.0075;
+  total =
+    subtotal - discount + Number(additionalCostInput.getNumericString()) + tax;
+  paymentChange = Number(paymentInput.getNumericString()) - total;
 
   subTotalTxt.set(subtotal);
   taxTxt.set(tax);
   discountTxt.set(discount);
   totalTxt.set(total);
-  changeTxt.set(paymentInput.getNumericString() - total);
+  changeTxt.set(paymentChange);
 
   cost = [
     subtotal,
     discount,
     tax,
     total,
-    additionalCostInput.getNumericString(),
-    paymentInput.getNumericString(),
+    Number(additionalCostInput.getNumericString()),
+    Number(paymentInput.getNumericString()),
   ];
-
   document.getElementById("input-cost").value = JSON.stringify(cost);
 
   checkOrder();

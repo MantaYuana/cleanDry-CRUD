@@ -12,9 +12,6 @@ $res = mysqli_fetch_all($query);
             <path d="M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3" />
         </g>
     </symbol>
-    <symbol id="delete" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M7 21q-.825 0-1.412-.587T5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zM9 17h2V8H9zm4 0h2V8h-2zM7 6v13z" />
-    </symbol>
 </svg>
 
 <section id="transaction">
@@ -53,46 +50,45 @@ $res = mysqli_fetch_all($query);
                             $numb = 0;
                             foreach ($res as $key => $value) {
                                 $numb++;
+
+                                switch ($value[11]) {
+                                    case 'baru':
+                                        $value[11] = "New";
+                                        $statusColor = "info";
+                                        break;
+                                    case 'proses':
+                                        $value[11] = "On process";
+                                        $statusColor = "warning";
+                                        break;
+                                    case 'selesai':
+                                        $value[11] = "On shelf";
+                                        $statusColor = "primary";
+                                        break;
+                                    case 'diambil':
+                                        $value[11] = "Done";
+                                        $statusColor = "success";
+                                        break;
+                                    default:
+                                        $value[11] = "error status";
+                                        break;
+                                }
+                                $value[12] = ($value[12] == 'dibayar') ? "Paid" : "Unpaid";
+                                $payColor = ($value[12] == 'Paid') ? "success" : "warning";
+
                                 echo "<tr>
                         <th scope='row'>$numb</th>
-                        <th class='text-start'>$value[2]</th>
+                        <th class='text-start'><a href='../page/page.php?page=detail-transaction&idTransaction=$value[0]'>$value[2]</a></th>
                         <td>$value[5]</td>
-                        <td>$value[10]</td>
-                        <td>$value[11]</td>
+                        <td><span class='badge rounded-pill bg-$statusColor'>$value[11]</span></td>
+                        <td><span class='badge rounded-pill bg-$payColor'>$value[12]</span></td>
                         <td>
-                            <a type='button' class='btn btn-warning me-3' href='../page/page.php?page=edit-transaction&idTransaction=$value[0]'>
+                            <a type='button' class='btn btn-sm btn-warning me-3' href='../page/page.php?page=edit-transaction&idTransaction=$value[0]'>
                                 <svg class='bi pe-none' width='24' height='24'>
                                     <use xlink:href='#edit' />
                                 </svg>
                             </a>
-                            <a type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalDelete$value[0]'>
-                            <svg class='bi pe-none' width='24' height='24'>
-                                <use xlink:href='#delete' />
-                            </svg>
-                        </a>
                         </td>
                     </tr>
-                    <div class='modal fade' id='modalDelete$value[0]' tabindex='-1'>
-                    <div class='modal-dialog'>
-                        <div class='modal-content'>
-                            <div class='modal-header'>
-                                <h1 class='modal-title fs-5'>Delete Confirmation</h1>
-                                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                            </div>
-                            <div class='modal-body'>
-                                <h6>Are you sure you want to delete <span class='fw-bolder'>$value[1]</span> ?</h6>
-                                <h6>This change is irreversible</h6>
-                            </div>
-                            <div class='modal-footer'>
-                                <button type='button' class='btn btn-outline-secondary' data-bs-dismiss='modal'>Cancel</button>
-                                <form action='../php/helper/outlet_process.php' method='POST'>
-                                    <input type='hidden' name='process' value='destroy'>
-                                    <input type='hidden' name='id' value='$value[0]'>
-                                    <button type='submit' class='btn btn-danger'>Delete</button>
-                                </form>                                                                              
-                            </div>
-                        </div>
-                    </div>
                 </div>";
                             }
                             ?>

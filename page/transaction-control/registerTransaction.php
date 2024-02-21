@@ -35,6 +35,7 @@ $paket = mysqli_fetch_all($query);
                         <div class="col-5">
                             <div class="mb-3 input-group align-items-center">
                                 <label for="transaction-name" class="form-label me-2">Name </label>
+                                <!-- TODO: implement select2 on name search -->
                                 <input type="text" list="optionTransactionName" name="transaction-name" class="form-control" id="transaction-name" onfocusout="updateInfo()" required>
                                 <datalist id="optionTransactionName" required>
                                     <?php foreach ($member as $key => $value) {
