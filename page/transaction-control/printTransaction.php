@@ -12,14 +12,18 @@ while ($row = mysqli_fetch_assoc($query)) {
 }
 $memberDataIndex = array_keys($memberData);
 
+$query = mysqli_query($conn, "SELECT id, nama FROM user WHERE id IN (SELECT id_user FROM transaksi WHERE id_outlet = $outlet);");
+$cashierData = [];
+while ($row = mysqli_fetch_assoc($query)) {
+    $data = array($row['id'] => $row['nama']);
+    array_push($cashierData, $row);
+}
+$cashierDataIndex = array_keys($cashierData);
 ?>
 
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-    <symbol id="edit" viewBox="0 0 24 24">
-        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-            <path d="m16.475 5.408l2.117 2.117m-.756-3.982L12.109 9.27a2.118 2.118 0 0 0-.58 1.082L11 13l2.648-.53c.41-.082.786-.283 1.082-.579l5.727-5.727a1.853 1.853 0 1 0-2.621-2.621" />
-            <path d="M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3" />
-        </g>
+    <symbol id="search" viewBox="0 0 24 24">
+        <path fill="currentColor" d="m19.6 21l-6.3-6.3q-.75.6-1.725.95T9.5 16q-2.725 0-4.612-1.888T3 9.5q0-2.725 1.888-4.612T9.5 3q2.725 0 4.613 1.888T16 9.5q0 1.1-.35 2.075T14.7 13.3l6.3 6.3zM9.5 14q1.875 0 3.188-1.312T14 9.5q0-1.875-1.312-3.187T9.5 5Q7.625 5 6.313 6.313T5 9.5q0 1.875 1.313 3.188T9.5 14" />
     </symbol>
 </svg>
 
@@ -38,10 +42,24 @@ $memberDataIndex = array_keys($memberData);
         <br>
 
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Transaction Order</h6>
+            <div class="card-header p-3">
+                <h6 class="m-0 font-weight-bold">Transaction Order</h6>
             </div>
             <div class="card-body">
+                <!-- TODO: implement filtering option -->
+                <div class="card shadow">
+                    <div class="card-header p-3">
+                        <h6 class="m-0 font-weight-bold">Filter Option</h6>
+                    </div>
+                    <div class="card-body">
+                        <input type="text" name="input-dateRange" class="form-control flatpickr flatpickr-input datePicker col-8" placeholder="Select Transaction Date Range" id="input-dateRange" required>
+                        <button class="btn btn-primary text-light" onclick="showTransaction()">
+                            <svg class='bi pe-none' width='24' height='24'>
+                                <use xlink:href='#search' />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle nowrap" id="dataTable">
                         <thead>
@@ -60,11 +78,12 @@ $memberDataIndex = array_keys($memberData);
                                 <th scope="col">Cashier</th>
                             </tr>
                         </thead>
-                        <tbody class="table-group-divider text-center">
+                        <tbody class="table-group-divider text-center" id="transaction-table-body">
                             <?php
                             $numb = 0;
                             foreach ($transaction as $key => $value) {
                                 $customer = $memberData[array_search($value[3], $memberDataIndex)]["nama"];
+                                $cashier = $cashierData[array_search($value[13], $cashierDataIndex)]["nama"];
                                 $numb++;
 
                                 switch ($value[11]) {
@@ -103,7 +122,7 @@ $memberDataIndex = array_keys($memberData);
                         <td class='currencyFormatRupiah'>$value[10]</td>
                         <td>$value[11]</td>
                         <td>$value[12]</td>
-                        <td>$value[13]</td>
+                        <td>$cashier</td>
                     </tr>
                 </div>";
                             }
@@ -121,12 +140,8 @@ $memberDataIndex = array_keys($memberData);
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha512-ahmSZKApTDNd3gVuqL5TQ3MBTj8tL5p2tYV05Xxzcfu6/ecvt1A0j6tfudSGBVuteSoTRMqMljbfdU0g2eDNUA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <!-- <script src="../node_modules/datatables.net/js/jquery.dataTables.min.js"></script> -->
 <!-- <script src="../node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script> -->
-<script src="../js/autoNumericFormat.js"></script>
+<!-- <script src="../js/autoNumericFormat.js"></script> -->
 <script src="https://cdn.datatables.net/v/bs5/dt-2.0.0/b-3.0.0/b-html5-3.0.0/datatables.min.js"></script>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.1/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.1/js/dataTables.bootstrap5.js"></script> -->
 
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.bootstrap5.js"></script>
@@ -136,6 +151,9 @@ $memberDataIndex = array_keys($memberData);
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.print.min.js"></script> <!-- for print -->
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.colVis.min.js"></script>
+
+<script src="../js/autoNumericFormat.js"></script>
+<script src="../js/generateReport.js"></script>
 
 <script>
     function getToday() {
@@ -164,7 +182,7 @@ $memberDataIndex = array_keys($memberData);
                 }
             },
             columnDefs: [{
-                targets: -1,
+                // targets: [0],
                 visible: false
             }]
         });
