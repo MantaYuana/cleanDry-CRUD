@@ -94,7 +94,7 @@ switch ($_GET['page']) {
         require_once "transaction-control/printTransaction.php";
         break;
     default:
-        echo "error page";
+        require_once "404.php";
         break;
 }
 

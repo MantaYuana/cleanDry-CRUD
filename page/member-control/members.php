@@ -34,23 +34,28 @@ $res = mysqli_fetch_all($query);
         </div>
         <br>
 
-        <div class="table-responsive bg-white p-5 border rounded-4">
-            <table class="table table-hover table-bordered align-middle">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    <?php
-                    foreach ($res as $key => $value) {
-                        $value[3] = ($value[3] == "L") ? "Male" : "Female";
-                        echo "<tr>
+        <div class="card shadow mb-4">
+            <div class="card-header p-3">
+                <h6 class="m-0 font-weight-bold">List of Members</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle nowrap" id="dataTable">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Phone Number</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <?php
+                            foreach ($res as $key => $value) {
+                                $value[3] = ($value[3] == "L") ? "Male" : "Female";
+                                echo "<tr>
                         <th class='text-center' scope='row'>$value[0]</th>
                         <td>$value[1]</td>
                         <td>$value[2]</td>
@@ -62,11 +67,11 @@ $res = mysqli_fetch_all($query);
                                     <use xlink:href='#edit' />
                                 </svg>
                             </a>";
-                        $available = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(id)
+                                $available = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(id)
                         FROM member WHERE EXISTS
                         (SELECT id FROM transaksi WHERE id_member=$value[0])"));
-                        if ($available[0] == 0) {
-                            echo "<a type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalDelete$value[0]'>
+                                if ($available[0] == 0) {
+                                    echo "<a type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalDelete$value[0]'>
                             <svg class='bi pe-none' width='24' height='24'>
                                 <use xlink:href='#delete' />
                             </svg>
@@ -95,11 +100,27 @@ $res = mysqli_fetch_all($query);
                         </div>
                     </div>
                 </div>";
-                        }
-                    }
-                    ?>
-                </tbody>
-            </table>
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script src="../node_modules/jquery/dist/jquery.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="../node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#dataTable").DataTable({
+            columnDefs: [{
+                orderable: false,
+                targets: 5
+            }],
+        });
+    });
+</script>

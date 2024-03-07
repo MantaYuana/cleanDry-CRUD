@@ -9,18 +9,18 @@ $query = mysqli_query($conn, "SELECT * FROM outlet WHERE id=$id;");
 $res = mysqli_fetch_assoc($query);
 ?>
 
-<section id="register" class="bg-body-secondary vh-100">
+<section id="register">
     <div class="container">
         <br>
         <h6 class="mt-3">Outlet <span class="fw-bolder text-decoration-underline"><?= $_SESSION['outlet']['nama'] ?>,</span></h6>
         <h2 class="fw-medium" style="color: var(--mc-green-dark);">Edit <span class="fw-bolder" style="color: var(--mc-green-dark-mono);">Outlet</span></h2>
         <br>
 
-        <div class="border rounded-4 bg-white col-8">
-            <div class="border pt-3 pb-1 d-flex justify-content-center">
-                <h5>Modify Outlet</h5>
+        <div class="card shadow mb-4 col-8">
+            <div class="card-header p-3">
+                <h5 class="m-0 font-weight-bold text-center">Modify Outlet</h5>
             </div>
-            <div class="border rounded-4 p-5">
+            <div class="card-body p-5">
                 <form action="../php/helper/outlet_process.php" method="post">
                     <div class="mb-3 col-8">
                         <label for="register-name" class="form-label">Name <span class="text-danger">*</span> </label>

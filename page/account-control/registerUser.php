@@ -9,33 +9,34 @@ $query = mysqli_query($conn, "SELECT id, nama FROM outlet;");
 $res = mysqli_fetch_all($query);
 ?>
 
-<section id="register" class="bg-body-secondary vh-100">
+<section id="register">
     <div class="container">
         <br>
         <h6 class="mt-3">Admin Menu - <span class="fw-bolder text-decoration-underline"><?= $_SESSION['outlet']['nama'] ?>,</span></h6>
         <h2 class="fw-medium" style="color: var(--mc-green-dark);">Register <span class="fw-bolder" style="color: var(--mc-green-dark-mono);">User</span></h2>
         <br>
 
-        <div class="border rounded-4 bg-white col-8">
-            <div class="border pt-3 pb-1 d-flex justify-content-center">
-                <h5>Add User</h5>
+        <div class="card shadow mb-4 col-8">
+            <div class="card-header p-3">
+                <h5 class="m-0 font-weight-bold text-center">Add User</h5>
             </div>
-            <div class="border rounded-4 p-5">
+            <div class="card-body p-5">
                 <form action="../php/helper/account_process.php" method="post">
-                    <div class="mb-3 col-8">
+                    <div class="mb-3">
                         <label for="register-name" class="form-label">Name <span class="text-danger">*</span> </label>
                         <input type="text" name="register-name" class="form-control p-2" id="register-name" required>
                     </div>
-                    <div class="mb-3 col-8">
+                    <div class="mb-3">
                         <label for="register-username" class="form-label">Username <span class="text-danger">*</span></label>
                         <input type="text" name="register-username" class="form-control p-2" id="register-username" required>
                     </div>
-                    <div class="mb-3 col-8">
+                    <div class="mb-3">
                         <label for="register-password" class="form-label">Password <span class="text-danger">*</span></label>
                         <input type="password" name="register-password" class="form-control p-2" id="register-password" required>
                     </div>
-                    <div class="d-flex flex-row mb-3 col-8">
+                    <div class="d-flex flex-row mb-3">
                         <div class="me-3">
+                            <!-- TODO: remake using select2 -->
                             <label for="register-outlet" name="register-outlet" class="form-label">What outlet is you're based at ? <span class="text-danger">*</span></label>
                             <input type="text" list="outletOptions" name="register-outlet" class="form-control p-2" id="register-username" required autocomplete="off">
                             <!-- TODO: maybe use regex to only take the first 4 numbers -->

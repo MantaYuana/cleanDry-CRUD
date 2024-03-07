@@ -113,11 +113,11 @@
                 </div>
                 <div id="tax-stats" class="p-3 border rounded-3 mb-3 flex-grow-1">
                     <h6>Total Tax</h6>
-                    <p class="display-6 fw-semibold text-secondary text-center">Rp. <?= $data["tax"] ?></p>
+                    <p class="display-6 fw-semibold text-secondary text-center currencyFormatRupiah"><?= $data["tax"] ?></p>
                 </div>
                 <div id="revenue-stats" class="p-3 border rounded-3 mb-3 flex-grow-1">
                     <h6>Current Monthly Revenue</h6>
-                    <p class="display-6 fw-semibold text-secondary text-center">Rp. 3.093.820</p>
+                    <p class="display-6 fw-semibold text-secondary text-center currencyFormatRupiah">3093820</p>
                 </div>
             </div>
 
@@ -125,3 +125,5 @@
     </div>
 
 </section>
+
+<script src="../js/autoNumericFormat.js"></script>

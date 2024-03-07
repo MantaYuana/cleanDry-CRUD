@@ -21,7 +21,7 @@ $res = mysqli_fetch_all($query);
     </symbol>
 </svg>
 
-<section id="packages" class="bg-body-secondary vh-100">
+<section id="packages">
     <div class="container">
         <br>
         <div class="page-heading d-flex justify-content-between align-items-center">
@@ -35,22 +35,26 @@ $res = mysqli_fetch_all($query);
         </div>
         <br>
 
-        <div class="table-responsive bg-white p-5 border rounded-4">
-            <table class="table table-hover table-bordered align-middle">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    <?php
-                    foreach ($res as $key => $value) {
-                        // FIXME: only allow delete if not data is associated
-                        echo "<tr>
+        <div class="card shadow mb-4">
+            <div class="card-header p-3">
+                <h6 class="m-0 font-weight-bold">List of Users</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle nowrap" id="dataTable">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <?php
+                            foreach ($res as $key => $value) {
+                                echo "<tr>
                             <th class='text-center' scope='row'>$value[0]</th>
                             <td>$value[1]</td>
                             <td>$value[2]</td>
@@ -90,9 +94,25 @@ $res = mysqli_fetch_all($query);
                                 </div>
                             </div>
                         </div>";
-                    } ?>
-                </tbody>
-            </table>
+                            } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+<script src="../node_modules/jquery/dist/jquery.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="../node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#dataTable").DataTable({
+            columnDefs: [{
+                orderable: false,
+                targets: 4
+            }],
+        });
+    });
+</script>

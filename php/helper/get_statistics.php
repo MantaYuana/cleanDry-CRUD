@@ -11,7 +11,7 @@ foreach ($result as $key => $value) {
     if ($value[0] == "dibayar") {
         $data["paid"]++;
     } else {
-        $data["unpiad"]++;
+        $data["unpaid"]++;
     }
     $data["tax"] += $value[1];
 }
