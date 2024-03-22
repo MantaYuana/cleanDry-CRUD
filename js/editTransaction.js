@@ -1,3 +1,14 @@
+const additionalCostInput = new AutoNumeric(
+  "#input-additionalCost",
+  AutoNumericConfig
+);
+const paymentInput = new AutoNumeric("#input-payment", AutoNumericConfig);
+const subTotalTxt = new AutoNumeric("#sub-total", AutoNumericConfig);
+const taxTxt = new AutoNumeric("#tax", AutoNumericConfig);
+const discountTxt = new AutoNumeric("#discount", AutoNumericConfig);
+const totalTxt = new AutoNumeric("#total", AutoNumericConfig);
+const changeTxt = new AutoNumeric("#change", AutoNumericConfig);
+
 // flatpickr datepicker
 let date = new Date();
 let today = `${date.getFullYear()}-${date.getMonth() + 1}-${
