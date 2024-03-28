@@ -23,7 +23,7 @@ $res = mysqli_fetch_all($query);
                 <h6>Welcome <span class="fw-bolder"><?= ucwords($_SESSION['role']) ?> <?= $_SESSION['username'] ?></span></h6>
             </div>
             <div>
-                <a class="btn btn-outline-primary p-2 ps-3 pe-3" href="../page/page.php?page=print-transaction">Print Report</a>
+                <a class="btn btn-outline-success p-2 ps-3 pe-3" href="../page/page.php?page=print-transaction">Print Report</a>
                 <button type="button" class="btn btn-primary p-2 ps-5 pe-5"><a class="link-underline link-light link-underline-opacity-0" href="../page/page.php?page=register-transaction">Add Transaction</a></button>
             </div>
         </div>
@@ -31,7 +31,7 @@ $res = mysqli_fetch_all($query);
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Transaction Order</h6>
+                <h6 class="m-0 font-weight-bold">Transaction Order</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

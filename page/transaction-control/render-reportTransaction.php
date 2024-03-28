@@ -15,9 +15,19 @@ while ($row = mysqli_fetch_assoc($query)) {
 }
 $memberDataIndex = array_keys($memberData);
 
+$query = mysqli_query($conn, "SELECT id, nama FROM user WHERE id_outlet = $outlet AND id IN (SELECT id_user FROM transaksi WHERE id_outlet = $outlet);");
+$cashierData = [];
+while ($row = mysqli_fetch_assoc($query)) {
+    $data = array($row['id'] => $row['nama']);
+    array_push($cashierData, $row);
+}
+$cashierDataIndex = array_keys($cashierData);
+
 $numb = 0;
+$report = [];
 foreach ($transaction as $key => $value) {
     $customer = $memberData[array_search($value[3], $memberDataIndex)]["nama"];
+    $cashier = $cashierData[array_search($value[13], $cashierDataIndex)]["nama"];
     $numb++;
 
     switch ($value[11]) {
@@ -44,21 +54,19 @@ foreach ($transaction as $key => $value) {
     $value[12] = ($value[12] == 'dibayar') ? "Paid" : "Unpaid";
     $payColor = ($value[12] == 'Paid') ? "success" : "warning";
 
-    echo "<tr class='text-center'>
-                        <th scope='row' class='text-center'>$numb</th>
-                        <th class='text-start'>$value[4]</a></th>
-                        <td class='text-start'>$value[2]</td>
-                        <td>$customer</td>
-                        <td>$value[6]</td>
-                        <td class='currencyFormatRupiah' id='test'>$value[7]</td>
-                        <td class='currencyFormatRupiah'>$value[8]</td>
-                        <td class='currencyFormatRupiah'>$value[9]</td>
-                        <td class='currencyFormatRupiah'>$value[10]</td>
-                        <td>$value[11]</td>
-                        <td>$value[12]</td>
-                        <td>$value[13]</td>
-                    </tr>
-                </div>";
-}
+    $value[7] = "Rp" .  number_format($value[7], 2, ",", ".");
+    $value[8] = "Rp" . number_format($value[8], 2, ",", ".");
+    $value[9] = "Rp" . number_format($value[9], 2, ",", ".");
 
-?>
+    if ($value[10] < 0) {
+        $value[10] = "-Rp" . number_format(abs($value[10]), 2, ",", ".");
+    } else {
+        $value[10] = "Rp" . number_format($value[10], 2, ",", ".");
+    }
+
+    array_push(
+        $report,
+        array("#" => $numb, "Date of Transaction" => $value[4], "Invoice Code" => $value[2], "Customer" => $customer, "Payment Date" => $value[6], "Additional Cost" => $value[7], "Discount" => $value[8], "Tax" => $value[9], "Change" => $value[10], "Status" => $value[11], "Payment" => $value[12], "Cashier" => $cashier)
+    );
+}
+echo json_encode($report);

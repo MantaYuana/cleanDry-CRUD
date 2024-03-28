@@ -1,24 +1,8 @@
 <?php
-
-$outlet = $_SESSION['outlet']['id'];
-$query = mysqli_query($conn, "SELECT * FROM transaksi WHERE id_outlet = $outlet;");
-$transaction = mysqli_fetch_all($query);
-
-$query = mysqli_query($conn, "SELECT id, nama FROM member WHERE id IN (SELECT id_member FROM transaksi WHERE id_outlet = $outlet);");
-$memberData = [];
-while ($row = mysqli_fetch_assoc($query)) {
-    $data = array($row['id'] => $row['nama']);
-    array_push($memberData, $row);
+if (($_SESSION['role'] != "owner") || ($_SESSION['role'] != "admin")) {
+    echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../page/page.php?page=transactions';</script>";
+    exit();
 }
-$memberDataIndex = array_keys($memberData);
-
-$query = mysqli_query($conn, "SELECT id, nama FROM user WHERE id IN (SELECT id_user FROM transaksi WHERE id_outlet = $outlet);");
-$cashierData = [];
-while ($row = mysqli_fetch_assoc($query)) {
-    $data = array($row['id'] => $row['nama']);
-    array_push($cashierData, $row);
-}
-$cashierDataIndex = array_keys($cashierData);
 ?>
 
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -79,54 +63,7 @@ $cashierDataIndex = array_keys($cashierData);
                             </tr>
                         </thead>
                         <tbody class="table-group-divider text-center" id="transaction-table-body">
-                            <?php
-                            $numb = 0;
-                            foreach ($transaction as $key => $value) {
-                                $customer = $memberData[array_search($value[3], $memberDataIndex)]["nama"];
-                                $cashier = $cashierData[array_search($value[13], $cashierDataIndex)]["nama"];
-                                $numb++;
-
-                                switch ($value[11]) {
-                                    case 'baru':
-                                        $value[11] = "New";
-                                        $statusColor = "info";
-                                        break;
-                                    case 'proses':
-                                        $value[11] = "On process";
-                                        $statusColor = "warning";
-                                        break;
-                                    case 'selesai':
-                                        $value[11] = "On shelf";
-                                        $statusColor = "primary";
-                                        break;
-                                    case 'diambil':
-                                        $value[11] = "Done";
-                                        $statusColor = "success";
-                                        break;
-                                    default:
-                                        $value[11] = "error status";
-                                        break;
-                                }
-                                $value[12] = ($value[12] == 'dibayar') ? "Paid" : "Unpaid";
-                                $payColor = ($value[12] == 'Paid') ? "success" : "warning";
-
-                                echo "<tr class='text-center'>
-                        <th scope='row' class='text-center'>$numb</th>
-                        <th class='text-start'>$value[4]</a></th>
-                        <td class='text-start'>$value[2]</td>
-                        <td>$customer</td>
-                        <td>$value[6]</td>
-                        <td class='currencyFormatRupiah' id='test'>$value[7]</td>
-                        <td class='currencyFormatRupiah'>$value[8]</td>
-                        <td class='currencyFormatRupiah'>$value[9]</td>
-                        <td class='currencyFormatRupiah'>$value[10]</td>
-                        <td>$value[11]</td>
-                        <td>$value[12]</td>
-                        <td>$cashier</td>
-                    </tr>
-                </div>";
-                            }
-                            ?>
+                            <!-- FIXME: column and data wont align -->
                         </tbody>
                     </table>
                 </div>
@@ -158,13 +95,52 @@ $cashierDataIndex = array_keys($cashierData);
 <script>
     function getToday() {
         let date = new Date();
-        let today = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+        let today = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}`;
         return today;
     }
     $(document).ready(function() {
         $("#dataTable").DataTable({
+            // data: myData,
+            columns: [{
+                    data: '#'
+                },
+                {
+                    data: 'Date of Transaction'
+                },
+                {
+                    data: 'Invoice Code'
+                },
+                {
+                    data: 'Customer'
+                },
+                {
+                    data: 'Payment Date'
+                },
+                {
+                    data: 'Additional Cost'
+                },
+                {
+                    data: 'Discount'
+                },
+                {
+                    data: 'Tax'
+                },
+                {
+                    data: 'Change'
+                },
+                {
+                    data: 'Status'
+                },
+                {
+                    data: 'Payment'
+                },
+                {
+                    data: 'Cashier'
+                },
+            ],
             scrollX: true,
             responsive: true,
+            // autoWidth: true,
             layout: {
                 topStart: {
                     buttons: [{

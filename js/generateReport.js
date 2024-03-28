@@ -3,13 +3,14 @@ const xhttp = new XMLHttpRequest();
 
 // flatpickr datepicker
 let date = new Date();
-let today = `${date.getFullYear()}-${date.getMonth() + 1}-${
+let dateLimit = `${date.getFullYear()}-${date.getMonth() + 1}-${
   date.getDate() + 1
 } ${date.getHours()}:${date.getMinutes()}`;
+
 const datePickerPaydate = flatpickr(".datePicker", {
   mode: "range",
   dateFormat: "d-m-Y",
-  maxDate: today,
+  maxDate: dateLimit,
 });
 
 function showTransaction() {
@@ -21,11 +22,15 @@ function showTransaction() {
     datePickerPaydate.selectedDates[1],
     "Y-m-d"
   );
+
   let option = [startDate, endDate];
-  const transactionTable = document.getElementById("transaction-table-body");
+  var datatable = $("#dataTable").DataTable();
 
   xhttp.onload = function () {
-    transactionTable.innerHTML = this.response;
+    datatable.clear();
+    datatable.rows.add(JSON.parse(this.responseText));
+    datatable.draw();
+    console.log(this.responseText);
   };
   xhttp.open("POST", "transaction-control/render-reportTransaction.php");
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
