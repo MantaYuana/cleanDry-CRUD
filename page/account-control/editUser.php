@@ -1,7 +1,7 @@
 <!-- TODO: add bootstrap custom form validation -->
 <?php
 if ($_SESSION['role'] != "admin") {
-    echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../../page/page.php?page=dashboard';</script>";
+    echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../page/page.php?page=dashboard';</script>";
     exit();
 }
 

@@ -1,3 +1,10 @@
+<?php
+if (isset($_SESSION['role'])) {
+    echo "<script>alert('You have already logged in'); window.location.href = '../page/page.php?page=dashboard';</script>";
+    exit();
+}
+?>
+
 <section id="login">
 
     <div class="d-lg-flex flex-lg-row flex-column align-items-lg-center align-items-start">
@@ -11,10 +18,10 @@
                 <h2 class="text-light fw-bolder">Welcome Back !</h2>
                 <br>
 
-                <p class="text-light lh-1">Don't have an account yet ? <br> Then create one, it's free !</p>
-                <div class="d-grid gap-2">
+                <p class="text-light lh-1 text-center">If you do not have an account yet, <br> Contact an administrator for further information</p>
+                <!-- <div class="d-grid gap-2">
                     <a href="page.php?page=register" class="btn btn-primary text-light p-2">Register</a>
-                </div>
+                </div> -->
 
                 <br>
                 <h6 class="hr-text"><span class="text-light">OR</span></h6>
