@@ -138,9 +138,9 @@ foreach ($cart as $key => $value) {
                                         echo "<tr>
                         <th scope='row'>$numb</th>
                         <th class='text-start'>$nama_paket</a></th>
-                        <td>$harga_paket</td>
+                        <td class='currencyFormatRupiah'>$harga_paket</td>
                         <td>$qty</td>
-                        <td>$totalHarga</td>
+                        <td class='currencyFormatRupiah'>$totalHarga</td>
                         <td width='250ch'>$keteranganNotes</td>
                         <td>
                             <a type='button' class='btn btn-sm btn-danger $deleteEnable' data-bs-toggle='modal' data-bs-target='#modalDelete$id_paket'>
@@ -173,6 +173,7 @@ foreach ($cart as $key => $value) {
                                 </tbody>
                             </table>
                         </div>
+                        <!-- TODO: implement autoNumeric -->
                         <div class="p-3">
                             <div class="row mb-2 d-flex align-items-center justify-content-between">
                                 <div class="col-md-3">Sub Total </div>
@@ -199,6 +200,7 @@ foreach ($cart as $key => $value) {
                             </div>
                             <div id="payment" class="row mb-2 align-items-center justify-content-between">
                                 <div class="col-md-3"><label for="transaction-pay">Payment</label> </div>
+                                <!-- FIXME: make payment to only require more money instead of total money paid -->
                                 <div class="col-md-9 d-flex justify-content-between pe-0">
                                     <input type="text" class="form-control text-end" id="input-payment" oninput="calculateCart()" value="0" <?= ($transaction["dibayar"] == "dibayar") ? "disabled" : "" ?>>
                                 </div>

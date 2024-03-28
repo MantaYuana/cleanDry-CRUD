@@ -181,6 +181,7 @@ $paket = mysqli_fetch_all($query);
 
                     <input type="hidden" name="input-cart" id="input-cart" value="">
                     <input type="hidden" name="input-cost" id="input-cost" value="">
+                    <input type="hidden" name="input-status" id="input-status" value="baru">
                     <input type="hidden" name="process" value="register">
                     <button type="submit" class="btn btn-primary text-light p-2" id="btn-submit" onclick="checkOrder()" disabled>Submit</button>
                     <a class="btn btn-outline-secondary p-2 ps-3 pe-3" href="../page/page.php?page=transactions">Back</a>
