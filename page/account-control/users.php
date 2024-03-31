@@ -1,6 +1,6 @@
 <?php
 if ($_SESSION['role'] != "admin") {
-    echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../../page/page.php?page=dashboard';</script>";
+    echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../page/page.php?page=dashboard';</script>";
     exit();
 }
 
@@ -54,11 +54,23 @@ $res = mysqli_fetch_all($query);
                         <tbody class="table-group-divider">
                             <?php
                             foreach ($res as $key => $value) {
+                                switch ($value[5]) {
+                                    case 'owner':
+                                        $value[5] = "Owner";
+                                        break;
+                                    case 'kasir':
+                                        $value[5] = "Kasir";
+                                        break;
+                                    default:
+                                        $value[5] = "Error Value";
+                                        break;
+                                }
+
                                 echo "<tr>
                             <th class='text-center' scope='row'>$value[0]</th>
                             <td>$value[1]</td>
                             <td>$value[2]</td>
-                            <td>$value[5]</td>
+                            <td class='text-center'>$value[5]</td>
                             <td class='text-center'>
                                 <a type='button' class='btn btn-warning me-3' href='../page/page.php?page=edit-user&idUser=$value[0]'>
                                     <svg class='bi pe-none' width='24' height='24'>

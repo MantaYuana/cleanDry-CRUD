@@ -45,8 +45,8 @@ $res = mysqli_fetch_assoc($query);
                     <div class="mb-3 col-8">
                         <label for="register-role" name="register-role" class="form-label">What is your role ? <span class="text-danger">*</span></label>
                         <select class="form-select" name="register-role" required>
-                            <option value="kasir">Kasir</option>
-                            <option value="owner">Owner</option>
+                            <option value="kasir" <?= ($res["role"] == "kasir") ? "selected" : "" ?>>Kasir</option>
+                            <option value="owner" <?= ($res["role"] == "owner") ? "selected" : "" ?>>Owner</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary text-light p-2">Submit</button>

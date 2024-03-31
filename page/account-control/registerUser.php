@@ -1,7 +1,7 @@
 <!-- TODO: add bootstrap custom form validation -->
 <?php
 if ($_SESSION['role'] != "admin") {
-    echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../../page/page.php?page=dashboard';</script>";
+    echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../page/page.php?page=dashboard';</script>";
     exit();
 }
 
@@ -35,21 +35,7 @@ $res = mysqli_fetch_all($query);
                         <input type="password" name="register-password" class="form-control p-2" id="register-password" required>
                     </div>
                     <div class="d-flex flex-row mb-3">
-                        <div class="me-3">
-                            <!-- TODO: remake using select2 -->
-                            <label for="register-outlet" name="register-outlet" class="form-label">What outlet is you're based at ? <span class="text-danger">*</span></label>
-                            <input type="text" list="outletOptions" name="register-outlet" class="form-control p-2" id="register-username" required autocomplete="off">
-                            <!-- TODO: maybe use regex to only take the first 4 numbers -->
-                            <datalist id="outletOptions" required>
-                                <?php foreach ($res as $key => $value) {
-                                    $val = $value[0];
-                                    $name = $value[1];
-                                    echo "<option value='$val'>$val - $name</option>";
-                                } ?>
-                            </datalist>
-                        </div>
-
-                        <div class="me-3">
+                        <div class="me-3 col-8">
                             <label for="register-role" name="register-role" class="form-label">What is your role ? <span class="text-danger">*</span></label>
                             <select class="form-select" name="register-role" required>
                                 <option value="kasir">Kasir</option>
