@@ -40,7 +40,12 @@ if ($process == "register") {
     if (!$res) {
         echo "<script>alert('Delete Failed: " . mysqli_error($conn) . "');</script>";
     } else {
-        echo "<script>alert('Delete success !'); window.location.href = '../../page/page.php?page=outlets';</script>";
+        if ($_SESSION["outlet"]["id"] == $id) {
+            echo "<script>alert('Delete success !');alert('You have been logged out due to your outlet being removed !'); window.location.href = '../../page/page.php?page=login';</script>";
+            session_destroy();
+        }else{
+            echo "<script>alert('Delete success !'); window.location.href = '../../page/page.php?page=outlets';</script>";
+        }
         exit;
     }
 } elseif ($process == "outletSelect") {
