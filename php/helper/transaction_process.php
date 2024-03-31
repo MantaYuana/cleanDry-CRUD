@@ -15,7 +15,7 @@ $tgl = date("Y-m-d H:i:s");
 @$pajak = $cost[2];
 @$kembalian = $cost[5] - $cost[3];
 @$tgl_bayar = ($kembalian >= 0) ? $tgl : NULL;
-@$status = "baru";
+@$status = $_POST["input-status"];
 @$dibayar = ($kembalian >= 0) ? "dibayar" : "belum_bayar";
 @$id_user = $_SESSION['id_user'];
 $process = $_POST['process'];

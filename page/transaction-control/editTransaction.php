@@ -182,7 +182,7 @@ foreach ($cart as $key => $value) {
                             <div id="additional-cost" class="row mb-2 d-flex align-items-center justify-content-between">
                                 <div class="col-md-3"><label for="transaction-pay">Additional Cost</label> </div>
                                 <div class="col-md-9 d-flex justify-content-between pe-0">
-                                    <input type="text" class="form-control text-end" id="input-additionalCost" name="input-additionalCost" oninput="calculateCart()" value="<?= $transaction["biaya_tambahan"] ?>" <?= ($transaction["dibayar"] == "dibayar") ? "disabled" : "" ?>>
+                                    <input type="text" class="form-control text-end" id="input-additionalCost" name="input-additionalCost" oninput="calculateCart()" value="<?= $transaction["biaya_tambahan"] ?>" <?= ($transaction["dibayar"] == "dibayar") ? "readonly" : "" ?>>
                                 </div>
                             </div>
                             <div class="row mb-2 align-items-center justify-content-between">
@@ -202,7 +202,7 @@ foreach ($cart as $key => $value) {
                                 <div class="col-md-3"><label for="transaction-pay">Payment</label> </div>
                                 <!-- FIXME: make payment to only require more money instead of total money paid -->
                                 <div class="col-md-9 d-flex justify-content-between pe-0">
-                                    <input type="text" class="form-control text-end" id="input-payment" oninput="calculateCart()" value="0" <?= ($transaction["dibayar"] == "dibayar") ? "disabled" : "" ?>>
+                                    <input type="text" class="form-control text-end" id="input-payment" oninput="calculateCart()" value="0" <?= ($transaction["dibayar"] == "dibayar") ? "readonly" : "" ?>>
                                 </div>
                             </div>
                             <div class="row mb-2 align-items-center justify-content-between">
