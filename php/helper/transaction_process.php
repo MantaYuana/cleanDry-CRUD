@@ -4,7 +4,6 @@ session_start();
 date_default_timezone_set("Asia/Makassar");
 
 @$id = $_POST['id'];
-
 @$cost = json_decode($_POST['input-cost']);
 $id_outlet = $_SESSION["outlet"]["id"];
 @$id_member = $_POST['transaction-name'];
@@ -15,7 +14,7 @@ $tgl = date("Y-m-d H:i:s");
 @$pajak = $cost[2];
 @$kembalian = $cost[5] - $cost[3];
 @$tgl_bayar = ($kembalian >= 0) ? $tgl : NULL;
-@$status = "baru";
+@$status = $_POST["input-status"];
 @$dibayar = ($kembalian >= 0) ? "dibayar" : "belum_bayar";
 @$id_user = $_SESSION['id_user'];
 $process = $_POST['process'];
@@ -40,7 +39,7 @@ if ($process == "register") {
         echo "<script>alert('Transaction success !'); window.location.href = '../../page/page.php?page=transactions';</script>";
         exit;
     }
-} elseif ($process == "edit") {
+} elseif ($process == "edit") {    
     $res = mysqli_query($conn, "UPDATE transaksi SET deadline='$deadline', tgl_bayar='$tgl_bayar', status='$status', dibayar='$dibayar', pajak=$pajak, biaya_tambahan=$biaya_tambahan, kembalian=$kembalian WHERE id=$id;");
 
     if (!$res) {
