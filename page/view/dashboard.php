@@ -31,36 +31,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Best Selling Shower</td>
-                            <td>Full Clean</td>
-                            <td>410</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Upside down row</td>
-                            <td>Dry Clean</td>
-                            <td>200</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Windmill</td>
-                            <td>Full Clean</td>
-                            <td>300</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>EZ Clean</td>
-                            <td>Bulk Clean</td>
-                            <td>100</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Windmill Extreme</td>
-                            <td>Cleam & Detail</td>
-                            <td>30</td>
-                        </tr>
+                        <?php
+                        for ($i = 1; $i < min((count($dataPackage)), 5); $i++) {
+                            $index = (array_keys($dataPackage)[$i]);
+                            $type = $dataPackage['packageType'][$i - 1];
+                            $numb = $i;
+                            echo "<tr>
+                                    <th scope='row'>$numb</th>
+                                    <td>$index</td>
+                                    <td>$type</td>
+                                    <td>$dataPackage[$index]</td>
+                                </tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -70,12 +53,20 @@
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
+                            <th scope="col">Package</th>
                             <th scope="col">Quantity</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <?php
+                        foreach ($dataLatestTransaction as $latestTransacton => $ordervalue) {
+                            echo "<tr>
+                            <td>$ordervalue[0]</td>
+                            <td>$ordervalue[1]</td>
+                        </tr>";
+                        }
+                        ?>
+                        <!-- <tr>
                             <td>Best Selling Shower</td>
                             <td>2</td>
                         </tr>
@@ -94,7 +85,7 @@
                         <tr>
                             <td>Windmill Extreme</td>
                             <td>1</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -109,11 +100,11 @@
             <div class="col-4 d-flex flex-column align-content-stretch">
                 <div id="paid-unpaid-stats" class="p-3 border rounded-3 mb-3 flex-grow-1">
                     <h6>Paid/Unpaid Order</h6>
-                    <p class="display-6 text-center"><span class="text-success fw-semibold"><?= $data["paid"] ?></span>/<span class="text-danger fw-semibold"><?= $data["unpaid"] ?></span></p>
+                    <p class="display-6 text-center"><span class="text-success fw-semibold"><?= $dataCount["paid"] ?></span>/<span class="text-danger fw-semibold"><?= $dataCount["unpaid"] ?></span></p>
                 </div>
                 <div id="tax-stats" class="p-3 border rounded-3 mb-3 flex-grow-1">
                     <h6>Total Tax</h6>
-                    <p class="display-6 fw-semibold text-secondary text-center currencyFormatRupiah"><?= $data["tax"] ?></p>
+                    <p class="display-6 fw-semibold text-secondary text-center currencyFormatRupiah"><?= $dataCount["tax"] ?></p>
                 </div>
                 <div id="revenue-stats" class="p-3 border rounded-3 mb-3 flex-grow-1">
                     <h6>Current Monthly Revenue</h6>
