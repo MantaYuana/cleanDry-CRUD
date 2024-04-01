@@ -1,4 +1,9 @@
 <?php
+if ($_SESSION['role'] == "owner") {
+    echo "<script>alert('Only Cashier and Admin are premitted into this Page !'); window.location.href = '../page/page.php?page=dashboard';</script>";
+    exit();
+}
+
 $query = mysqli_query($conn, "SELECT id, nama FROM member;");
 $member = mysqli_fetch_all($query);
 

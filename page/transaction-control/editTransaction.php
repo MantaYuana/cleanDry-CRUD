@@ -1,5 +1,10 @@
 <?php
+if (!isset($_GET["idTransaction"])) {
+    echo "<script>alert('No transaction have been selected !'); window.location.href = '../page/page.php?page=transactions';</script>";
+    exit();
+}
 $id = $_GET["idTransaction"];
+
 $query = mysqli_query($conn, "SELECT * FROM transaksi WHERE id=$id;");
 $transaction = mysqli_fetch_assoc($query);
 

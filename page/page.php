@@ -89,10 +89,11 @@ switch ($_GET['page']) {
         require_once "transaction-control/editTransaction.php";
         break;
     case 'print-transaction':
+        require_once "template/navbar.php";
         require_once "template/sidebar.php";
         require_once "transaction-control/printTransaction.php";
         break;
-
+        // TODO: implement discount for member      
     default:
         require_once "template/navbar.php";
         require_once "404.php";

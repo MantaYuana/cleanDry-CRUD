@@ -1,3 +1,10 @@
+<?php 
+if ($_SESSION['role'] == "owner") {
+    echo "<script>alert('Only Cashier and Admin are premitted into this Page !'); window.location.href = '../page/page.php?page=dashboard';</script>";
+    exit();
+}
+?>
+
 <section id="register">
     <div class="container">
         <br>

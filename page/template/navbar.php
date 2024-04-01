@@ -27,7 +27,7 @@
                                     } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=register-member">Customer</a>
                     </li>
                     <li class="nav-item me-md-3">
-                        <a class="<?php if ($_GET["page"] == "transactions") {
+                        <a class="<?php if (($_GET["page"] == "transactions") || ($_GET["page"] == "print-transaction") || ($_GET["page"] == "register-transaction") || ($_GET["page"] == "edit-transaction")) {
                                         echo "active";
                                     } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=transactions">Transaction</a>
                     </li>

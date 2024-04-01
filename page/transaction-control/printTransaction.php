@@ -1,5 +1,5 @@
 <?php
-if (($_SESSION['role'] != "owner") || ($_SESSION['role'] != "admin")) {
+if (($_SESSION['role'] == "kasir")) {
     echo "<script>alert('You are not premitted into the Page !'); window.location.href = '../page/page.php?page=transactions';</script>";
     exit();
 }
