@@ -5,8 +5,8 @@ require_once "../php/connect.php"; // for depolyment
 $id_outlet = $_SESSION['outlet']['id'];
 // $id_outlet = 1;
 
-// STATISTIC of paid/unpaid count
-$query = mysqli_query($conn, "SELECT dibayar, pajak FROM transaksi WHERE YEAR(tgl_bayar)=date('Y') AND id_outlet = $id_outlet;");
+// STATISTIC of monthly paid/unpaid count
+$query = mysqli_query($conn, "SELECT dibayar, pajak FROM transaksi WHERE YEAR(tgl_bayar)=date('Y') AND MONTH(tgl)=date('n') AND id_outlet = $id_outlet;");
 $result = mysqli_fetch_all($query);
 
 $dataCount = ["paid" => 0, "unpaid" => 0, "tax" => 0]; // paid count, unpaid count, tax count
@@ -19,10 +19,8 @@ foreach ($result as $key => $value) {
     $dataCount["tax"] += $value[1];
 }
 
-// TODO: make statistics for latetst transaction, most sold package, and current monthly revenue using tb_detail_transaksi
-
-// STATISTIC of most sold package
-$query = mysqli_query($conn, "SELECT id_paket, qty FROM detail_transaksi WHERE id_transaksi IN (SELECT id FROM transaksi WHERE id_outlet = $id_outlet AND MONTH(tgl)=date('n'));");
+// STATISTIC of monthly most sold package
+$query = mysqli_query($conn, "SELECT id_paket, qty FROM detail_transaksi WHERE id_transaksi IN (SELECT id FROM transaksi WHERE id_outlet = $id_outlet AND YEAR(tgl_bayar)=date('Y') AND MONTH(tgl)=date('n'));");
 $result = mysqli_fetch_all($query);
 $tempQty = [];
 foreach ($result as $key => $value) {
@@ -64,9 +62,8 @@ foreach ($result as $key => $value) {
     array_push($dataPackage["packageType"], $value[2]);
 }
 
-// TODO: make statistics for latest transaction
-// STATISTIC of latest transaction
-$query = mysqli_query($conn, "SELECT id_paket, qty FROM detail_transaksi WHERE id_transaksi IN (SELECT id FROM transaksi WHERE id_outlet = $id_outlet AND MONTH(tgl)=date('n')) LIMIT 5");
+// STATISTIC of annual latest transaction
+$query = mysqli_query($conn, "SELECT id_paket, qty FROM detail_transaksi WHERE id_transaksi IN (SELECT id FROM transaksi WHERE id_outlet = $id_outlet AND YEAR(tgl_bayar)=date('Y')) LIMIT 5");
 $result = mysqli_fetch_all($query);
 $dataLatestTransaction = $result;
 
@@ -78,4 +75,13 @@ foreach ($result as $key => $value) {
             $dataLatestTransaction[$transaction][0] = $value[1];
         }
     }
+}
+
+// STATISTIC of current monthly revenue
+$query = mysqli_query($conn, "SELECT total_harga FROM detail_transaksi WHERE id_transaksi IN (SELECT id FROM transaksi WHERE id_outlet = $id_outlet AND YEAR(tgl_bayar)=date('Y') AND MONTH(tgl)=date('n'));");
+$result = mysqli_fetch_all($query);
+$dataRevenue = 0;
+foreach ($result as $key => $value) {
+    $orderCost = $value[0];
+    $dataRevenue = $orderCost;
 }

@@ -12,7 +12,7 @@
 
         <div class="d-flex flex-row justify-content-between mb-3 flex-fill">
             <div id="order-stats" class="col-4 border rounded-3 p-3 me-3">
-                <h6>Order Status Details</h6>
+                <h6>Annual Order Status Details</h6>
                 <div class="container d-flex flex-column align-items-center">
                     <!-- TODO: make canvas responsive or maybe use google chart-->
                     <div style="width: 15vw"><canvas id="order"></canvas></div>
@@ -20,7 +20,7 @@
             </div>
 
             <div id="loyal-stats" class="col-4 border rounded-3 p-3 me-3">
-                <h6>Most Sold Package</h6>
+                <h6>This Month Most Sold Package</h6>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -66,26 +66,6 @@
                         </tr>";
                         }
                         ?>
-                        <!-- <tr>
-                            <td>Best Selling Shower</td>
-                            <td>2</td>
-                        </tr>
-                        <tr>
-                            <td>Best Selling Shower</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Best Selling Shower</td>
-                            <td>4</td>
-                        </tr>
-                        <tr>
-                            <td>EZ Clean</td>
-                            <td>10</td>
-                        </tr>
-                        <tr>
-                            <td>Windmill Extreme</td>
-                            <td>1</td>
-                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -99,16 +79,16 @@
 
             <div class="col-4 d-flex flex-column align-content-stretch">
                 <div id="paid-unpaid-stats" class="p-3 border rounded-3 mb-3 flex-grow-1">
-                    <h6>Paid/Unpaid Order</h6>
+                    <h6>Paid/Unpaid Order (monthly)</h6>
                     <p class="display-6 text-center"><span class="text-success fw-semibold"><?= $dataCount["paid"] ?></span>/<span class="text-danger fw-semibold"><?= $dataCount["unpaid"] ?></span></p>
                 </div>
                 <div id="tax-stats" class="p-3 border rounded-3 mb-3 flex-grow-1">
-                    <h6>Total Tax</h6>
+                    <h6>Total Tax (monthly)</h6>
                     <p class="display-6 fw-semibold text-secondary text-center currencyFormatRupiah"><?= $dataCount["tax"] ?></p>
                 </div>
                 <div id="revenue-stats" class="p-3 border rounded-3 mb-3 flex-grow-1">
                     <h6>Current Monthly Revenue</h6>
-                    <p class="display-6 fw-semibold text-secondary text-center currencyFormatRupiah">3093820</p>
+                    <p class="display-6 fw-semibold text-secondary text-center currencyFormatRupiah"><?= $dataRevenue ?></p>
                 </div>
             </div>
 
