@@ -1,5 +1,5 @@
 <?php
-if (!isset($_GET["idTransaction"])) {
+if (empty($_GET["idTransaction"])) {
     echo "<script>alert('No transaction have been selected !'); window.location.href = '../page/page.php?page=transactions';</script>";
     exit();
 }
@@ -127,11 +127,11 @@ foreach ($cart as $key => $value) {
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
+                                <!-- TODO: if cannot delete, tell the user why -->
                                 <tbody class="table-group-divider text-center">
                                     <?php
                                     $numb = 0;
                                     foreach ($cart as $key => $value) {
-                                        // FIXME: format total price into rupiah
                                         $numb++;
                                         $deleteEnable = ($transaction["dibayar"] == "dibayar") ? "d-none" : "";
                                         $nama_paket = $packageName[$key]["nama_paket"];
@@ -178,7 +178,6 @@ foreach ($cart as $key => $value) {
                                 </tbody>
                             </table>
                         </div>
-                        <!-- TODO: implement autoNumeric -->
                         <div class="p-3">
                             <div class="row mb-2 d-flex align-items-center justify-content-between">
                                 <div class="col-md-3">Sub Total </div>
@@ -202,6 +201,10 @@ foreach ($cart as $key => $value) {
                             <div class="row mb-2 align-items-center justify-content-between mb-3">
                                 <div class="col-md-3 fw-bolder">Total </div>
                                 <div class="col-md-9 d-flex justify-content-between fw-bolder"><span>:</span> <span id="total"><?= $totalTransaction ?></span></div>
+                            </div>
+                            <div class="row mb-2 align-items-center justify-content-between mb-3">
+                                <div class="col-md-3 fw-bolder">Paid Total</div>
+                                <div class="col-md-9 d-flex justify-content-between fw-bolder"><span>:</span> <span id="paid"><?= $totalTransaction ?></span></div>
                             </div>
                             <div id="payment" class="row mb-2 align-items-center justify-content-between">
                                 <div class="col-md-3"><label for="transaction-pay">Payment</label> </div>

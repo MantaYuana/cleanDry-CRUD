@@ -7,6 +7,7 @@ const subTotalTxt = new AutoNumeric("#sub-total", AutoNumericConfig);
 const taxTxt = new AutoNumeric("#tax", AutoNumericConfig);
 const discountTxt = new AutoNumeric("#discount", AutoNumericConfig);
 const totalTxt = new AutoNumeric("#total", AutoNumericConfig);
+const paidTxt = new AutoNumeric("#paid", AutoNumericConfig);
 const changeTxt = new AutoNumeric("#change", AutoNumericConfig);
 
 // flatpickr datepicker
@@ -16,8 +17,10 @@ let today = `${date.getFullYear()}-${date.getMonth() + 1}-${
 } ${date.getHours()}:${date.getMinutes()}`;
 const datePickerDeadline = flatpickr(".datePicker", {
   enableTime: true,
+  minuteIncrement: 1,
+  minTime: "08:00",
+  maxTime: "20:00",
   dateFormat: "Y-m-d H:i",
-  //   minDate: today,
   time_24hr: true,
   allowInput: true,
 });
@@ -54,8 +57,8 @@ function calculateCart() {
     0.0075;
   total =
     subtotal - discount + Number(additionalCostInput.getNumericString()) + tax;
-  paymentChange = Number(paymentInput.getNumericString()) - total;
-
+  paymentChange = Number(paymentInput.getNumericString()) + Number(paidTxt.getNumericString()) - total;
+  
   subTotalTxt.set(subtotal);
   taxTxt.set(tax);
   discountTxt.set(discount);
@@ -64,16 +67,16 @@ function calculateCart() {
 
   cost = [
     subtotal,
-    discount,
+    discount, 
     tax,
     total,
     Number(additionalCostInput.getNumericString()),
-    Number(paymentInput.getNumericString()),
+    paymentChange
   ];
   document.getElementById("input-cost").value = JSON.stringify(cost);
 }
 
 calculateCart();
-paymentInput.set(cost[3] + Number(costTransaction["kembalian"]));
+paidTxt.set(cost[3] + Number(costTransaction["kembalian"]));
 changeTxt.set(costTransaction["kembalian"]);
 calculateCart();

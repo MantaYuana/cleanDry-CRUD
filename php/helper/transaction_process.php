@@ -13,7 +13,7 @@ $tgl = date("Y-m-d H:i:s");
 @$biaya_tambahan = $_POST["input-additionalCost"];
 @$diskon = $cost[1];
 @$pajak = $cost[2];
-@$kembalian = $cost[5] - $cost[3];
+@$kembalian = $cost[5]; 
 @$tgl_bayar = ($kembalian >= 0) ? $tgl : NULL;
 @$status = $_POST["input-status"];
 @$dibayar = ($kembalian >= 0) ? "dibayar" : "belum_bayar";

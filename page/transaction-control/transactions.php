@@ -24,7 +24,7 @@ $res = mysqli_fetch_all($query);
             <div>
                 <?php
                 if ($_SESSION['role'] != "kasir") {
-                    echo "<a class='btn btn-outline-success p-2 ps-3 pe-3' href='../page/page.php?page=print-transaction'>Print Report</a>";
+                    echo "<a class='btn btn-outline-success p-2 ps-3 pe-3 me-3' href='../page/page.php?page=print-transaction'>Print Report</a>";
                 }
                 if ($_SESSION['role'] != "owner") {
                     echo "<button type='button' class='btn btn-primary p-2 ps-5 pe-5'><a class='link-underline link-light link-underline-opacity-0' href='../page/page.php?page=register-transaction'>Add Transaction</a></button>";

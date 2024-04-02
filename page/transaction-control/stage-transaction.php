@@ -7,7 +7,7 @@ $idCustomer = $_POST['customer'];
 $idPackage = $_POST['package'];
 
 if ($idCustomer > 0) {
-    $query = mysqli_query($conn, "SELECT telp, alamat FROM member WHERE id=$idCustomer;");
+    $query = mysqli_query($conn, "SELECT nama, telp FROM member WHERE id=$idCustomer;");
     $resCustomer = mysqli_fetch_assoc($query);
 }
 

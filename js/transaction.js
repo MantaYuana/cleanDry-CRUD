@@ -32,6 +32,9 @@ let today = `${date.getFullYear()}-${date.getMonth() + 1}-${
 } ${date.getHours()}:${date.getMinutes()}`;
 const datePickerDeadline = flatpickr(".datePicker", {
   enableTime: true,
+  minuteIncrement: 1,
+  minTime: "08:00",
+  maxTime: "20:00",
   dateFormat: "Y-m-d H:i",
   minDate: today,
   time_24hr: true,
@@ -64,9 +67,9 @@ function updateInfo() {
   xhttp.onload = function () {
     let response = JSON.parse(this.response);
 
-    if (response.telp != null && response.alamat != null) {
+    if (response.telp != null && response.nama != null) {
       document.getElementById("transaction-telp").value = response.telp;
-      document.getElementById("transaction-alamat").value = response.alamat;
+      document.getElementById("transaction-fullName").value = response.nama;
     }
 
     if (response.nama_paket != null && response.harga != null) {
@@ -199,7 +202,7 @@ function calculateCart() {
     tax,
     total,
     Number(additionalCostInput.getNumericString()),
-    Number(paymentInput.getNumericString()),
+    paymentChange,
   ];
   document.getElementById("input-cost").value = JSON.stringify(cost);
 

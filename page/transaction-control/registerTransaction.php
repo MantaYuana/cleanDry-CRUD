@@ -39,7 +39,7 @@ $paket = mysqli_fetch_all($query);
                     <div id="transaction-customer" class="border p-3 mb-3 d-flex flex-row justify-content-between">
                         <div class="col-5">
                             <div class="mb-3 input-group align-items-center">
-                                <label for="transaction-name" class="form-label me-2">Name </label>
+                                <label for="transaction-name" class="form-label me-2">Customer ID </label>
                                 <!-- TODO: implement select2 on name search -->
                                 <input type="text" list="optionTransactionName" name="transaction-name" class="form-control" id="transaction-name" onfocusout="updateInfo()" required>
                                 <datalist id="optionTransactionName" required>
@@ -57,8 +57,8 @@ $paket = mysqli_fetch_all($query);
                         </div>
                         <div class="col-5">
                             <div class="mb-3 input-group align-items-center">
-                                <label for="transaction-alamat" class="form-label me-2">Address </label>
-                                <input type="text" name="transaction-alamat" class="form-control" id="transaction-alamat" readonly>
+                                <label for="transaction-fullName" class="form-label me-2">Customer Name </label>
+                                <input type="text" name="transaction-fullName" class="form-control" id="transaction-fullName" readonly>
                             </div>
                             <div class="mb-3 input-group align-items-center">
                                 <label for="transaction-benefit" class="form-label me-2">Benefit </label>
@@ -69,7 +69,7 @@ $paket = mysqli_fetch_all($query);
                     <div id="transaction-item" class="border p-3 pb-0 d-flex flex-row justify-content-between">
                         <div class="col-3">
                             <div class="mb-3 input-group align-items-center">
-                                <label for="transaction-package" class="form-label me-2">Package: </label>
+                                <label for="transaction-package" class="form-label me-2">Package ID: </label>
                                 <input type="text" list="optionTransactionPackage" name="transaction-package" class="form-control" id="transaction-package" required autocomplete="off" onfocusout="updateInfo()">
                                 <!-- TODO: maybe use regex to only take the first 4 numbers -->
                                 <datalist id="optionTransactionPackage" required>
