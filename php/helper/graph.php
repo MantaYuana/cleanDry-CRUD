@@ -5,7 +5,7 @@ require_once "../php/connect.php"; // for depolyment
 
 // TODO: make all statistics call into a single fetch query
 $id_outlet = $_SESSION['outlet']['id'];
-$query = mysqli_query($conn, "SELECT MONTH(tgl_bayar) FROM transaksi WHERE status='selesai' AND YEAR(tgl_bayar)=date('Y') AND id_outlet = $id_outlet;");
+$query = mysqli_query($conn, "SELECT MONTH(tgl) FROM transaksi WHERE YEAR(tgl)=date('Y') AND id_outlet = $id_outlet;");
 $result = mysqli_fetch_all($query);
 
 $data = [];

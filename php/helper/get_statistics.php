@@ -83,5 +83,5 @@ $result = mysqli_fetch_all($query);
 $dataRevenue = 0;
 foreach ($result as $key => $value) {
     $orderCost = $value[0];
-    $dataRevenue = $orderCost;
+    $dataRevenue += $orderCost;
 }
