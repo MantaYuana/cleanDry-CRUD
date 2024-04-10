@@ -87,7 +87,11 @@ $res = mysqli_fetch_all($query);
                                 <a type='button' class='btn btn-warning me-3' href='../page/page.php?page=edit-package&idPackage=$value[0]'>
                                     <svg class='bi pe-none' width='24' height='24'>
                                         <use xlink:href='#edit' />
-                                    </svg>
+                                    </svg>";
+                                $available = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(id) FROM detail_transaksi WHERE id_paket = $value[0];"));
+
+                                if ($available[0] == 0) {
+                                    echo "
                                 </a><a type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalDelete$value[0]'>
                                     <svg class='bi pe-none' width='24' height='24'>
                                         <use xlink:href='#delete' />
@@ -117,6 +121,7 @@ $res = mysqli_fetch_all($query);
                                 </div>
                             </div>
                         </div>";
+                                }
                             } ?>
                         </tbody>
                     </table>
