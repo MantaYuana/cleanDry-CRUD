@@ -61,6 +61,9 @@ $res = mysqli_fetch_all($query);
                                     case 'kasir':
                                         $value[5] = "Kasir";
                                         break;
+                                    case 'admin':
+                                        $value[5] = "Administrator";
+                                        break;
                                     default:
                                         $value[5] = "Error Value";
                                         break;
@@ -76,7 +79,11 @@ $res = mysqli_fetch_all($query);
                                     <svg class='bi pe-none' width='24' height='24'>
                                         <use xlink:href='#edit' />
                                     </svg>
-                                </a>
+                                </a>";
+                                $available = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(id)
+                        FROM transaksi WHERE id_user=$value[0]"));
+                                if ($available[0] == 0) {
+                                    echo "
                                 <a type='button' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalDelete$value[0]'>
                                     <svg class='bi pe-none' width='24' height='24'>
                                         <use xlink:href='#delete' />
@@ -106,6 +113,7 @@ $res = mysqli_fetch_all($query);
                                 </div>
                             </div>
                         </div>";
+                                }
                             } ?>
                         </tbody>
                     </table>

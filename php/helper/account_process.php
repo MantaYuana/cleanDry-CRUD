@@ -65,13 +65,13 @@ if ($process == "register") {
         $outlet = $data_user['id_outlet'];
         $_SESSION['outlet'] = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM outlet WHERE id='$outlet';"));
         // TODO: implement cross page message transfer (like in task-manager)
-        echo "<script>alert('Login Succesfull'); window.location.href = '../../page/page.php?page=dashboard';</script>";
+        echo "<script>alert('Login Succesful'); window.location.href = '../../page/page.php?page=dashboard';</script>";
     } else {
         echo "<script>alert('Login Failed'); window.location.href = '../../page/page.php?page=login';</script>";
     }
 } elseif ($process == "logout") {
     session_destroy();
-    echo "<script>alert('Logout Succesfull'); window.location.href = '../../page/page.php?page=login';</script>";
+    echo "<script>alert('Logout Succesful'); window.location.href = '../../page/page.php?page=login';</script>";
 } else {
     echo "<script>alert('Unknown Process, contact admin'); window.location.href = '../../page/page.php?page=dashboard';</script>";
     exit;

@@ -18,7 +18,6 @@ if ($process == "register") {
     } else {
         $res = mysqli_query($conn, "INSERT INTO member VALUES (NULL, '$name', '$alamat', '$kelamin', '$telp');");
 
-        // FIXME: if not admin go to dashboard
         // TODO: implement cross page message transfer (like in task-manager)
         if (!$res) {
             echo "<script>alert('Register Failed: " . mysqli_error($conn) . "'); window.location.href = '../../page/page.php?page=register-member';</script>";

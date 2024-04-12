@@ -15,17 +15,17 @@
             </button>
             <div class="collapse navbar-collapse d-lg-none" id="navbarCollapsed">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- TODO: add active class into active page -->
                     <li class="nav-item me-md-3">
                         <a class="<?php if ($_GET["page"] == "dashboard") {
                                         echo "active";
                                     } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=dashboard">Overview</a>
                     </li>
+                    <?php if ($_SESSION['role'] != "owner") { ?> 
                     <li class="nav-item me-md-3">
                         <a class="<?php if ($_GET["page"] == "register-member") {
                                         echo "active";
                                     } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=register-member">Customer</a>
-                    </li>
+                    </li><?php } ?>
                     <li class="nav-item me-md-3">
                         <a class="<?php if (($_GET["page"] == "transactions") || ($_GET["page"] == "print-transaction") || ($_GET["page"] == "register-transaction") || ($_GET["page"] == "edit-transaction")) {
                                         echo "active";
@@ -54,8 +54,6 @@
                     ?>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <!-- QUESTION: is button bg color bad ? -->
-                            <!-- FIXME: remove button background in navbar collapse mode -->
                             <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32px" viewBox="0 0 24 24">
                                     <g fill="none">

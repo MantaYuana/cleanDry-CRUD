@@ -41,21 +41,21 @@
                 </svg>
             </a>
         </li>
-        <li>
+        <li class="nav-item">
             <a href="../page/page.php?page=packages" class="nav-link py-3 border-bottom rounded-0" title="Packages" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24">
                     <use xlink:href="#packages" />
                 </svg>
             </a>
         </li>
-        <li>
+        <li class="nav-item">
             <a href="../page/page.php?page=users" class="nav-link py-3 border-bottom rounded-0" title="Users" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24">
                     <use xlink:href="#users" />
                 </svg>
             </a>
         </li>
-        <li>
+        <li class="nav-item">
             <a href="../page/page.php?page=members" class="nav-link py-3 border-bottom rounded-0" title="Members" data-bs-toggle="tooltip" data-bs-placement="right">
                 <svg class="bi pe-none" width="24" height="24">
                     <use xlink:href="#members" />
