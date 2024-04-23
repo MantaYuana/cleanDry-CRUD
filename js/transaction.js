@@ -1,4 +1,4 @@
-// AutoNumeric
+// AutoNumeric config
 const AutoNumericConfig = {
   currencySymbol: "Rp",
   decimalCharacter: ",",
@@ -9,6 +9,8 @@ const AutoNumericConfig = {
   emptyInputBehavior: "always",
   watchExternalChanges: true,
 };
+
+// initialize AutoNumeric Object
 const packagePriceTxt = new AutoNumeric(
   "#transaction-harga",
   AutoNumericConfig
@@ -65,11 +67,22 @@ function updateInfo() {
   const packageVal = document.getElementById("transaction-package").value;
 
   xhttp.onload = function () {
-    let response = JSON.parse(this.response);
+    let response = null;
+    response = JSON.parse(this.response);
 
-    if (response.telp != null && response.nama != null) {
+    if (
+      response.telp != null &&
+      response.nama != null &&
+      response.benefit != null
+    ) {
       document.getElementById("transaction-telp").value = response.telp;
       document.getElementById("transaction-fullName").value = response.nama;
+      document.getElementById("transaction-benefit").value = response.benefit;
+    } else {
+      document.getElementById("transaction-name").value = "";
+      document.getElementById("transaction-telp").value = "";
+      document.getElementById("transaction-fullName").value = "";
+      document.getElementById("transaction-benefit").value = "";
     }
 
     if (response.nama_paket != null && response.harga != null) {
@@ -99,6 +112,11 @@ function updateInfo() {
       document.getElementById("transaction-jenis").innerHTML = response.jenis;
       document.getElementById("transaction-harga").value = response.harga;
       updateTotal();
+    } else {
+      document.getElementById("transaction-package").value = "";
+      document.getElementById("transaction-paket").innerHTML = "";
+      document.getElementById("transaction-jenis").innerHTML = "";
+      document.getElementById("transaction-harga").value = "";
     }
   };
 
@@ -113,14 +131,18 @@ function updateCart() {
   const packagePrice = packagePriceTxt;
   const orderNotes = document.getElementById("transaction-notes").value;
 
+  // check if an inputed package ID and quantity is a valid number
   if (packageID != 0 && quantity != 0) {
     let checkOrder = false;
+
+    // check if an inputed order exists in cart
     cart.forEach((element) => {
       if (element["packageID"] == packageID) {
         checkOrder = true;
       }
     });
 
+    // if false then push order into cart, render cart, and calculate new price
     if (checkOrder == false) {
       let order = {
         packageID: `${packageID}`,
@@ -133,6 +155,7 @@ function updateCart() {
       showCart();
       calculateCart();
     } else {
+      // if true throw a warning, cannot add same type of package
       // TODO: change modal into Toasts
       document.getElementById("modal-message-title").innerHTML = "Error !";
       document.getElementById("modal-message-body").innerHTML =
@@ -160,8 +183,10 @@ function showCart() {
 }
 
 function deleteCartOrder(order) {
-  let orderIndex = 0;
+  let orderIndex = -1;
   let temp = cart;
+
+  // find index of selected order 
   temp.forEach((element) => {
     if (element["packageID"] == order) {
       return;
@@ -183,6 +208,10 @@ function calculateCart() {
     subtotal = subtotal + element["price"] * element["quantity"];
   });
 
+  if (document.getElementById("transaction-benefit").value == "Discount") {
+    discount = 10000;
+  }
+
   tax =
     (subtotal - discount + Number(additionalCostInput.getNumericString())) *
     0.0075;
@@ -198,7 +227,7 @@ function calculateCart() {
 
   cost = [
     subtotal,
-    discount,
+    Number(discountTxt.getNumericString()),
     tax,
     total,
     Number(additionalCostInput.getNumericString()),
@@ -210,6 +239,7 @@ function calculateCart() {
 }
 
 function checkOrder() {
+  // function to enable submit if cart is empty
   if (cart.length > 0) {
     document.getElementById("btn-submit").disabled = false;
   } else {

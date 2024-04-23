@@ -1,4 +1,5 @@
 <?php
+// check if role is owner, if true then deny access
 if ($_SESSION['role'] == "owner") {
     echo "<script>alert('Only Cashier and Admin are premitted into this Page !'); window.location.href = '../page/page.php?page=dashboard';</script>";
     exit();
@@ -44,8 +45,10 @@ $paket = mysqli_fetch_all($query);
                                 <input type="text" list="optionTransactionName" name="transaction-name" class="form-control" id="transaction-name" onfocusout="updateInfo()" required>
                                 <datalist id="optionTransactionName" required>
                                     <?php foreach ($member as $key => $value) {
+                                        // get member ID value and Name 
                                         $val = $value[0];
                                         $name = $value[1];
+                                        // create option with value of member ID and Member name as text
                                         echo "<option value='$val'>$val - $name</option>";
                                     } ?>
                                 </datalist>
@@ -71,7 +74,6 @@ $paket = mysqli_fetch_all($query);
                             <div class="mb-3 input-group align-items-center">
                                 <label for="transaction-package" class="form-label me-2">Package ID: </label>
                                 <input type="text" list="optionTransactionPackage" name="transaction-package" class="form-control" id="transaction-package" required autocomplete="off" onfocusout="updateInfo()">
-                                <!-- TODO: maybe use regex to only take the first 4 numbers -->
                                 <datalist id="optionTransactionPackage" required>
                                     <?php foreach ($paket as $key => $value) {
                                         $val = $value[0];

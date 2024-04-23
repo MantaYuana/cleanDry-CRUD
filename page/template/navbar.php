@@ -29,7 +29,7 @@
                     <li class="nav-item me-md-3">
                         <a class="<?php if (($_GET["page"] == "transactions") || ($_GET["page"] == "print-transaction") || ($_GET["page"] == "register-transaction") || ($_GET["page"] == "edit-transaction")) {
                                         echo "active";
-                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=transactions">Transaction</a>
+                                    } ?> nav-link fw-bolder p-md-2 ps-3" href="../page/page.php?page=<?= ($_SESSION['role'] == "owner") ? "print-transaction" : "transactions"; ?>">Transaction</a>
                     </li>
                     <li class="<?php if ($_SESSION['role'] != "admin") {
                                     echo "d-none";

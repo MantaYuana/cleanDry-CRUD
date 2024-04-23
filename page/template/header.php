@@ -25,3 +25,9 @@
 </head>
 
 <body>
+    <?php
+    if (empty($_SESSION) && $_GET['page'] != 'login') {
+        echo "<script>alert('Please login first !'); window.location.href = '../page/page.php?page=login';</script>";
+        exit();
+    }
+    ?>

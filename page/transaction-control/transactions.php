@@ -1,4 +1,9 @@
 <?php
+if ($_SESSION['role'] == "owner") {
+    echo "<script>alert('Only Cashier and Admin are premitted into this Page !'); window.location.href = '../page/page.php?page=dashboard';</script>";
+    exit();
+}
+
 $outlet = $_SESSION['outlet']['id'];
 $query = mysqli_query($conn, "SELECT * FROM transaksi WHERE id_outlet = $outlet;");
 $res = mysqli_fetch_all($query);
@@ -22,10 +27,8 @@ $res = mysqli_fetch_all($query);
                 <h6>Welcome <span class="fw-bolder"><?= ucwords($_SESSION['role']) ?> <?= $_SESSION['username'] ?></span></h6>
             </div>
             <div>
+                <a class='btn btn-outline-success p-2 ps-3 pe-3 me-3' href='../page/page.php?page=print-transaction'>Print Report</a>
                 <?php
-                if ($_SESSION['role'] != "kasir") {
-                    echo "<a class='btn btn-outline-success p-2 ps-3 pe-3 me-3' href='../page/page.php?page=print-transaction'>Print Report</a>";
-                }
                 if ($_SESSION['role'] != "owner") {
                     echo "<button type='button' class='btn btn-primary p-2 ps-5 pe-5'><a class='link-underline link-light link-underline-opacity-0' href='../page/page.php?page=register-transaction'>Add Transaction</a></button>";
                 } ?>
@@ -82,7 +85,7 @@ $res = mysqli_fetch_all($query);
 
                                 echo "<tr>
                         <th scope='row'>$numb</th>
-                        <th class='text-start'><a href='../page/page.php?page=detail-transaction&idTransaction=$value[0]'>$value[2]</a></th>
+                        <th class='text-start'><a href=''>$value[2]</a></th>
                         <td>$value[5]</td>
                         <td><span class='badge rounded-pill bg-$statusColor'>$value[11]</span></td>
                         <td><span class='badge rounded-pill bg-$payColor'>$value[12]</span></td>

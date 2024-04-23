@@ -1,4 +1,9 @@
 <?php
+if ($_SESSION['role'] == "owner") {
+    echo "<script>alert('Only Cashier and Admin are premitted into this Page !'); window.location.href = '../page/page.php?page=dashboard';</script>";
+    exit();
+}
+
 if (empty($_GET["idTransaction"])) {
     echo "<script>alert('No transaction have been selected !'); window.location.href = '../page/page.php?page=transactions';</script>";
     exit();
@@ -35,6 +40,8 @@ foreach ($cart as $key => $value) {
     $totalTransaction += $value["total_harga"];
     array_push($packageName, $res);
 }
+
+$deleteEnable = ($transaction["dibayar"] == "dibayar" || $totalTransaction + $transaction['pajak'] - $transaction['diskon'] + $transaction['biaya_tambahan'] != abs($transaction['kembalian']) || count($cart) == 1) ? "d-none" : "";
 ?>
 
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -56,7 +63,7 @@ foreach ($cart as $key => $value) {
         <h2 class="fw-medium" style="color: var(--mc-green-dark);">Edit <span class="fw-bolder" style="color: var(--mc-green-dark-mono);">Transaction</span></h2>
         <br>
 
-        <form action="../php/helper/transaction_process.php" method="post">
+        <form action="../php/helper/transaction_process.php" method="post" id="transaction-form">
             <div class="d-lg-flex flex-row justify-content-between">
                 <div class="card shadow me-2">
                     <div class="card-header py-3">
@@ -93,8 +100,8 @@ foreach ($cart as $key => $value) {
                         </div>
                         <div class="mb-3">
                             <div class="me-3">
-                                <label for="register-additionalCost" class="form-label">Paid Date <span class="text-danger">*</span> </label>
-                                <input type="text" name="register-additionalCost" class="form-control p-2" id="register-additionalCost" value="<?= $transaction["tgl_bayar"] ?>" disabled>
+                                <label for="register-paidDate" class="form-label">Paid Date <span class="text-danger">*</span> </label>
+                                <input type="text" name="register-paidDate" class="form-control p-2" id="register-paidDate" value="<?= $transaction["tgl_bayar"] ?>" disabled>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary text-light p-2">Submit</button>
@@ -124,16 +131,15 @@ foreach ($cart as $key => $value) {
                                         <th scope="col">Qty</th>
                                         <th scope="col">Total</th>
                                         <th scope="col">Notes</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col" class="<?= $deleteEnable ?>">Action</th>
                                     </tr>
                                 </thead>
-                                <!-- TODO: if cannot delete, tell the user why -->
                                 <tbody class="table-group-divider text-center">
                                     <?php
                                     $numb = 0;
                                     foreach ($cart as $key => $value) {
                                         $numb++;
-                                        $deleteEnable = ($transaction["dibayar"] == "dibayar") ? "d-none" : "";
+                                        // $deleteEnable = ($transaction["dibayar"] == "dibayar") ? "d-none" : "";
                                         $nama_paket = $packageName[$key]["nama_paket"];
                                         $id_paket = $value["id"];
                                         $harga_paket = $value["harga_paket"];
@@ -147,7 +153,7 @@ foreach ($cart as $key => $value) {
                         <td>$qty</td>
                         <td class='currencyFormatRupiah'>$totalHarga</td>
                         <td width='250ch'>$keteranganNotes</td>
-                        <td>
+                        <td class='$deleteEnable'>
                             <a type='button' class='btn btn-sm btn-danger $deleteEnable' data-bs-toggle='modal' data-bs-target='#modalDelete$id_paket'>
                             <svg class='bi pe-none' width='24' height='24'>
                                 <use xlink:href='#delete' />
@@ -168,7 +174,7 @@ foreach ($cart as $key => $value) {
                             </div>
                             <div class='modal-footer'>
                                 <button type='button' class='btn btn-outline-secondary' data-bs-dismiss='modal'>Cancel</button>
-                                <button type='submit' class='btn btn-danger' onclick='updateCart($numb)'>Delete</button>
+                                <button type='button' class='btn btn-danger' onclick='updateCart($numb, $id)'>Delete</button>
                             </div>
                         </div>
                     </div>
@@ -204,11 +210,10 @@ foreach ($cart as $key => $value) {
                             </div>
                             <div class="row mb-2 align-items-center justify-content-between mb-3">
                                 <div class="col-md-3 fw-bolder">Paid Total</div>
-                                <div class="col-md-9 d-flex justify-content-between fw-bolder"><span>:</span> <span id="paid"><?= $totalTransaction ?></span></div>
+                                <div class="col-md-9 d-flex justify-content-between fw-bolder"><span>:</span> <span id="paid"></span></div>
                             </div>
                             <div id="payment" class="row mb-2 align-items-center justify-content-between">
                                 <div class="col-md-3"><label for="transaction-pay">Payment</label> </div>
-                                <!-- FIXME: make payment to only require more money instead of total money paid -->
                                 <div class="col-md-9 d-flex justify-content-between pe-0">
                                     <input type="text" class="form-control text-end" id="input-payment" oninput="calculateCart()" value="0" <?= ($transaction["dibayar"] == "dibayar") ? "readonly" : "" ?>>
                                 </div>
